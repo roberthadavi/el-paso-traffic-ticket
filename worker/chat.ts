@@ -98,6 +98,11 @@ async function extractLead(env: Env, messages: Msg[], prev: Lead): Promise<Lead>
   const looksLikeName = askedForName && /^[a-záéíóúñü' .-]{2,40}$/i.test(last.trim()) && last.trim().split(/\s+/).length <= 4;
   const hint = /\b(my name|i am|i'm|me llamo|soy|this is|call me|it's|name is)\b/i.test(userText);
   if (!lead.name && looksLikeName) lead.name = last.trim().replace(/\b\w/g, (c) => c.toUpperCase());
+  if (!lead.name && askedForName) {
+    // "Jose Ramirez, 03/14/1988, 915-555-0142, jose@x.com" → leading alphabetic words before the first digit/@/comma
+    const lead0 = last.trim().replace(/^(my name is|i am|i'm|me llamo|soy|this is|it's)\s+/i, '').split(/[,\n]|\s(?=\d)|\s(?=\S+@)/)[0]?.trim() ?? '';
+    if (/^[a-záéíóúñü' .-]{2,40}$/i.test(lead0) && lead0.split(/\s+/).length <= 4) lead.name = lead0.replace(/\b\w/g, (c) => c.toUpperCase());
+  }
   if (!lead.name && !hint && !lead.phone && !lead.email) return lead;
   try {
     const r = await env.AI!.run(EXTRACT_MODEL, {
@@ -198,7 +203,7 @@ export async function handleChat(req: Request, env: Env, ctx: ExecutionContext):
               if (!t.startsWith('data:')) continue;
               const payload = t.slice(5).trim();
               if (payload === '[DONE]') continue;
-              try { const j = JSON.parse(payload); if (j.response) controller.enqueue(encoder.encode(sse({ t: j.response }))); } catch { /* skip partial */ }
+              try { const j = JSON.parse(payload); if (j.response != null && j.response !== '') controller.enqueue(encoder.encode(sse({ t: String(j.response) }))); } catch { /* skip partial */ }
             }
           }
         } catch (e) { console.error('stream read failed', (e as Error).message); }
