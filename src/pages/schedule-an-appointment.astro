@@ -1,10 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
 import LegacyContent from '../components/LegacyContent.astro';
+import RelatedServices from '../components/RelatedServices.astro';
 import html from '../legacy/pages/schedule-an-appointment.html?raw';
 const title = 'Schedule an Appointment - Elpaso Traffic Ticket';
 const description = 'Schedule an Appointment Traffic Ticket Blog El Paso Warrants Lifted El Paso Municipal Court is renowned for their ability to issue active arrest warrants';
 ---
 <Base prefix="single_page" bodyClass="page-template page-template-elementor_header_footer page jet-engine-optimized-dom elementor-default elementor-template-full-width elementor-kit-5 elementor-page" title={title} description={description} path="/schedule-an-appointment/">
   <LegacyContent html={html} />
+  <RelatedServices slugs={['wills-and-estate-planning', 'record-clearing', 'traffic-tickets']} />
 </Base>

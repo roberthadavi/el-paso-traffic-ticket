@@ -1,10 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
 import LegacyContent from '../components/LegacyContent.astro';
+import RelatedServices from '../components/RelatedServices.astro';
 import html from '../legacy/pages/how-to-fight-a-traffic-ticket-in-el-paso-texas.html?raw';
 const title = 'How to Fight a Traffic Ticket in El Paso Texas - Elpaso Traffic Ticket';
 const description = 'Here are some steps you can use to Fight an El Paso Police Traffic Ticket yourself the process is time consuming but can be done ...';
 ---
 <Base prefix="single_blog_post" bodyClass="post-template-default single single-post single-format-standard jet-engine-optimized-dom elementor-default elementor-kit-5 ct-elementor-default-template" title={title} description={description} path="/how-to-fight-a-traffic-ticket-in-el-paso-texas/" pageType="Article">
   <LegacyContent html={html} />
+  <RelatedServices slugs={['speeding-ticket', 'ticket-dismissal', 'deferred-adjudication-defensive-driving']} next={{ slug:  'ticket-dismissal', label: "Next step: the grounds that actually get tickets dismissed", blurb: "Officer no-shows, defective citations, radar calibration — the dismissal arguments we use every week." }} />
 </Base>

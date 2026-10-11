@@ -1,10 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
 import LegacyContent from '../components/LegacyContent.astro';
+import RelatedServices from '../components/RelatedServices.astro';
 import html from '../legacy/pages/blogs.html?raw';
 const title = 'Blogs - Elpaso Traffic Ticket';
 const description = 'Keep up with the latest El Paso Traffic News and Changing Traffic Laws';
 ---
 <Base prefix="single_page" bodyClass="page-template page-template-elementor_header_footer page jet-engine-optimized-dom elementor-default elementor-template-full-width elementor-kit-5 elementor-page" title={title} description={description} path="/blogs/">
   <LegacyContent html={html} />
+  <RelatedServices slugs={['traffic-tickets', 'warrants', 'record-clearing']} />
 </Base>

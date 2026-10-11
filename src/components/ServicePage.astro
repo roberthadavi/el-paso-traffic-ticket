@@ -1,0 +1,146 @@
+---
+// Service / hub page body in the exact Elementor markup of the "Effective Warrant Lawyer" page (post-832),
+// so the old site's CSS styles it identically. Adds: breadcrumb, answer-first summary, placeholder photos,
+// price box, FAQ accordion (post-878 markup), related-service cards and a "next step" journey block.
+import { SITE } from '../data/site';
+import { HUBS, SERVICES, hubOf, type HubId } from '../data/services';
+import { resolve, type ServiceContent } from '../lib/services';
+import Placeholder from './Placeholder.astro';
+
+interface Props { content: ServiceContent; path: string; hub: HubId; isHub?: boolean; price?: string; slug: string; gbp?: string }
+const { content: c, path, hub, isHub = false, price, slug, gbp } = Astro.props;
+const H = hubOf(hub);
+const cta = c.cta || H.cta;
+const ctaBtn = cta === 'fight' ? { href: '/fight-my-ticket/', text: 'FIGHT MY TICKET' } : cta === 'lookup' ? { href: '/traffic-tickets-and-warrants-lookup-form/', text: 'CHECK FOR TICKETS / WARRANTS' } : { href: '/contact-us/', text: 'REQUEST A FREE CONSULTATION' };
+const related = (c.related || []).map(resolve).filter(Boolean) as { name: string; href: string; blurb?: string }[];
+const next = c.next ? resolve(c.next.slug) : null;
+const siblings = isHub ? SERVICES.filter((s) => s.hub === hub && s.slug) : [];
+const crumbs = [{ name: 'Home', href: '/' }, { name: H.name, href: H.path }, ...(isHub ? [] : [{ name: c.h1, href: path }])];
+const img = (i: number) => `/images/placeholders/${slug}-${i + 1}.svg`;
+---
+<div class="elementor elementor-832 ept-service" data-elementor-type="wp-page">
+  <!-- HERO -->
+  <div class="elementor-element elementor-element-4d9cd65 e-flex e-con-boxed e-con e-parent" data-e-type="container" data-element_type="container" data-id="4d9cd65">
+    <div class="e-con-inner">
+      <div class="elementor-element elementor-element-b229709 e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="b229709">
+        <nav class="ept-crumbs" aria-label="Breadcrumb"><ol>{crumbs.map((b, i) => <li>{i < crumbs.length - 1 ? <a href={b.href}>{b.name}</a> : <span aria-current="page">{b.name}</span>}</li>)}</ol></nav>
+        <div class="elementor-element elementor-element-f28be81 elementor-widget elementor-widget-heading" data-e-type="widget" data-element_type="widget" data-id="f28be81" data-widget_type="heading.default">
+          <h1 class="elementor-heading-title elementor-size-default">{c.h1}</h1>
+        </div>
+        <div class="elementor-element elementor-element-20ff2ec elementor-widget__width-initial elementor-widget elementor-widget-text-editor" data-e-type="widget" data-element_type="widget" data-id="20ff2ec" data-widget_type="text-editor.default">
+          <p>{c.intro}</p>
+        </div>
+        <div class="elementor-element elementor-element-5bdd571 e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="5bdd571">
+          <div class="elementor-element elementor-element-cfbed56 elementor-widget elementor-widget-button" data-e-type="widget" data-element_type="widget" data-id="cfbed56" data-widget_type="button.default">
+            <a class="elementor-button elementor-button-link elementor-size-sm" href={`tel:${SITE.phone}`}><span class="elementor-button-content-wrapper"><span class="elementor-button-text">CALL {SITE.phone}</span></span></a>
+          </div>
+          <div class="elementor-element elementor-element-1197a50 elementor-widget elementor-widget-button" data-e-type="widget" data-element_type="widget" data-id="1197a50" data-widget_type="button.default">
+            <a class="elementor-button elementor-button-link elementor-size-sm" href={ctaBtn.href}><span class="elementor-button-content-wrapper"><span class="elementor-button-text">{ctaBtn.text}</span></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANSWER-FIRST SUMMARY -->
+  <div class="elementor-element elementor-element-feb9efa e-flex e-con-boxed e-con e-parent ept-summary-wrap" data-e-type="container" data-element_type="container">
+    <div class="e-con-inner">
+      <div class="ept-summary">
+        <p class="ept-summary-kicker">The short answer</p>
+        <ul>{c.summary.map((s) => <li set:html={s} />)}</ul>
+        {price && <p class="ept-price">Flat fee for this court: <strong>{price}</strong> per ticket <span>— no court appearance required for most cases. <a href="/fight-my-ticket/">Hire online in 2 minutes →</a></span></p>}
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT SECTIONS (alternate image side) -->
+  {c.sections.map((s, i) => i % 2 === 0 ? (
+    <div class="elementor-element elementor-element-feb9efa e-flex e-con-boxed e-con e-parent" data-e-type="container" data-element_type="container" data-id="feb9efa">
+      <div class="e-con-inner">
+        <div class="elementor-element elementor-element-0911663 e-con-full e-flex e-con e-child ept-photo" data-e-type="container" data-element_type="container" data-id="0911663" style={s.image ? `background-image:url('${img(i)}')` : 'display:none'} role="img" aria-label={s.image?.alt}>
+          {s.image && <Placeholder label={s.image.label} />}
+        </div>
+        <div class="elementor-element elementor-element-e128722 e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="e128722">
+          <div class="elementor-element elementor-element-337d9bb elementor-widget elementor-widget-heading" data-e-type="widget" data-element_type="widget" data-id="337d9bb" data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default">{s.heading}</h2></div>
+          {s.paragraphs.map((p) => <div class="elementor-element elementor-element-7238674 elementor-widget elementor-widget-text-editor" data-e-type="widget" data-element_type="widget" data-id="7238674" data-widget_type="text-editor.default"><Fragment set:html={p.startsWith('<') ? p : `<p>${p}</p>`} /></div>)}
+          {s.list && <div class="elementor-element elementor-element-43b0012 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-e-type="widget" data-element_type="widget" data-id="43b0012" data-widget_type="icon-list.default"><ul class="elementor-icon-list-items">{s.list.map((l) => <li class="elementor-icon-list-item"><span class="elementor-icon-list-icon"><i aria-hidden="true" class="fas fa-circle"></i></span><span class="elementor-icon-list-text"><b>{l.b}</b> <Fragment set:html={l.text} /></span></li>)}</ul></div>}
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div class="elementor-element elementor-element-45dd45b e-flex e-con-boxed e-con e-parent" data-e-type="container" data-element_type="container" data-id="45dd45b">
+      <div class="e-con-inner">
+        <div class="elementor-element elementor-element-0fe7da3 e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="0fe7da3">
+          <div class="elementor-element elementor-element-abfe97e elementor-widget elementor-widget-heading" data-e-type="widget" data-element_type="widget" data-id="abfe97e" data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default">{s.heading}</h2></div>
+          {s.paragraphs.map((p) => <div class="elementor-element elementor-element-c8e904d elementor-widget elementor-widget-text-editor" data-e-type="widget" data-element_type="widget" data-id="c8e904d" data-widget_type="text-editor.default"><Fragment set:html={p.startsWith('<') ? p : `<p>${p}</p>`} /></div>)}
+          {s.list && <div class="elementor-element elementor-element-43b0012 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-e-type="widget" data-element_type="widget" data-id="43b0012" data-widget_type="icon-list.default"><ul class="elementor-icon-list-items">{s.list.map((l) => <li class="elementor-icon-list-item"><span class="elementor-icon-list-icon"><i aria-hidden="true" class="fas fa-circle"></i></span><span class="elementor-icon-list-text"><b>{l.b}</b> <Fragment set:html={l.text} /></span></li>)}</ul></div>}
+        </div>
+        <div class="elementor-element elementor-element-52781ec e-con-full e-flex e-con e-child ept-photo" data-e-type="container" data-element_type="container" data-id="52781ec" style={s.image ? `background-image:url('${img(i)}')` : 'display:none'} role="img" aria-label={s.image?.alt}>
+          {s.image && <Placeholder label={s.image.label} />}
+        </div>
+      </div>
+    </div>
+  ))}
+
+  <!-- HUB: all services in this hub -->
+  {isHub && siblings.length > 0 && (
+    <div class="elementor-element e-flex e-con-boxed e-con e-parent ept-cards-wrap" data-e-type="container">
+      <div class="e-con-inner">
+        <h2 class="elementor-heading-title elementor-size-default ept-h2">{H.name} — all services</h2>
+        <div class="ept-cards">{siblings.map((s) => <a class="ept-card" href={s.path}><span class="ept-card-kicker">{H.short}</span><span class="ept-card-title">{s.name}</span>{s.price && <span class="ept-card-price">Flat fee {s.price}</span>}<span class="ept-card-more">READ MORE</span></a>)}</div>
+      </div>
+    </div>
+  )}
+
+  <!-- CTA BAND (home page red band markup, post-16 CSS) -->
+  <div class="elementor elementor-16"><div class="elementor-element elementor-element-9b421ce e-flex e-con-boxed e-con e-parent" data-e-type="container" data-element_type="container" data-id="9b421ce"><div class="e-con-inner">
+    <div class="elementor-element elementor-element-bbdaeb6 elementor-widget elementor-widget-heading" data-e-type="widget" data-element_type="widget" data-id="bbdaeb6" data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default">Call for More Information &amp;<br/>Free Consultation</h2></div>
+    <div class="elementor-element elementor-element-89a4c22 elementor-widget__width-initial elementor-widget elementor-widget-text-editor" data-e-type="widget" data-element_type="widget" data-id="89a4c22" data-widget_type="text-editor.default"><p>I'll do my best to help you with any pending El Paso traffic tickets. I also serve Canutillo, Horizon City, Socorro, Clint, Anthony, Vinton, TX &amp; surrounding areas for traffic tickets and Class C misdemeanors.</p></div>
+    <div class="elementor-element elementor-element-a626a60 e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="a626a60">
+      <div class="elementor-element elementor-element-cb17322 elementor-widget elementor-widget-button" data-e-type="widget" data-element_type="widget" data-id="cb17322" data-widget_type="button.default"><a class="elementor-button elementor-button-link elementor-size-sm" href={`tel:${SITE.phone}`}><span class="elementor-button-content-wrapper"><span class="elementor-button-text">CALL {SITE.phone}</span></span></a></div>
+      <div class="elementor-element elementor-element-d6987b7 elementor-widget elementor-widget-button" data-e-type="widget" data-element_type="widget" data-id="d6987b7" data-widget_type="button.default"><a class="elementor-button elementor-button-link elementor-size-sm" href={ctaBtn.href}><span class="elementor-button-content-wrapper"><span class="elementor-button-text">{ctaBtn.text}</span></span></a></div>
+    </div>
+    <div class="elementor-element elementor-element-f43c5b6 elementor-widget elementor-widget-text-editor" data-e-type="widget" data-element_type="widget" data-id="f43c5b6" data-widget_type="text-editor.default"><p>{SITE.legalName}</p></div>
+    <div class="elementor-element elementor-element-962ce55 elementor-widget elementor-widget-text-editor" data-e-type="widget" data-element_type="widget" data-id="962ce55" data-widget_type="text-editor.default"><p>Address: {SITE.address.street}, {SITE.address.city}, {SITE.address.state} {SITE.address.zip}</p></div>
+  </div></div></div>
+
+  <!-- FAQ (post-878 nested accordion markup) -->
+  {c.faqs?.length > 0 && (
+    <div class="elementor elementor-878"><div class="elementor-element elementor-element-b7a6fd4 e-flex e-con-boxed e-con e-parent" data-e-type="container" data-element_type="container"><div class="e-con-inner">
+      <div class="elementor-element elementor-widget elementor-widget-heading" data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default ept-h2-red">Frequently Asked Questions</h2></div>
+      <div class="elementor-element elementor-element-75f4d0f elementor-widget elementor-widget-n-accordion" data-e-type="widget" data-element_type="widget" data-id="75f4d0f" data-widget_type="nested-accordion.default">
+        <div class="e-n-accordion" aria-label="Accordion. Open links with Enter or Space, close with Escape, and navigate with Arrow Keys">
+          {c.faqs.map((f, i) => (
+            <details class="e-n-accordion-item" id={`faq-${slug}-${i}`} open={i === 0 ? true : undefined}>
+              <summary class="e-n-accordion-item-title" aria-controls={`faq-${slug}-${i}`} aria-expanded={i === 0 ? 'true' : 'false'} data-accordion-index={i + 1} tabindex="0">
+                <span class="e-n-accordion-item-title-header"><div class="e-n-accordion-item-title-text">{f.q}</div></span>
+                <span class="e-n-accordion-item-title-icon"><span class="e-opened"><i aria-hidden="true" class="fas fa-minus"></i></span><span class="e-closed"><i aria-hidden="true" class="fas fa-plus"></i></span></span>
+              </summary>
+              <div class="elementor-element elementor-element-8c96cc7 e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" role="region" aria-labelledby={`faq-${slug}-${i}`}>
+                <div class="elementor-element elementor-element-573116e elementor-widget elementor-widget-text-editor" data-widget_type="text-editor.default"><Fragment set:html={f.a.startsWith('<') ? f.a : `<p>${f.a}</p>`} /></div>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div></div></div>
+  )}
+
+  <!-- NEXT STEP + RELATED -->
+  <div class="elementor-element e-flex e-con-boxed e-con e-parent ept-cards-wrap" data-e-type="container">
+    <div class="e-con-inner">
+      {next && c.next && (
+        <a class="ept-next" href={next.href}>
+          <span class="ept-next-kicker">{c.next.label}</span>
+          <span class="ept-next-title">{next.name} →</span>
+          <span class="ept-next-blurb">{c.next.blurb}</span>
+        </a>
+      )}
+      {related.length > 0 && <>
+        <h2 class="elementor-heading-title elementor-size-default ept-h2">Related services</h2>
+        <div class="ept-cards">{related.map((r) => <a class="ept-card" href={r.href}><span class="ept-card-kicker">{(SERVICES.find((s) => s.path === r.href) ? hubOf(SERVICES.find((s) => s.path === r.href)!.hub).short : 'Services')}</span><span class="ept-card-title">{r.name}</span><span class="ept-card-more">READ MORE</span></a>)}</div>
+      </>}
+      <p class="ept-author">Written by <a href="/contact-us/">Robert Navar</a>, attorney, {SITE.legalName.replace(' – Attorney Robert Navar', '')}. Licensed in Texas. This page is general information for El Paso County drivers, not legal advice about your specific case. {gbp && <span class="ept-gbp">Google service: {gbp}</span>}</p>
+    </div>
+  </div>
+</div>

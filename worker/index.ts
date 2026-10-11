@@ -124,7 +124,6 @@ const REDIRECTS: Record<string, string> = {
   '/traffic-ticket-and-warrants-lookup-form': '/traffic-tickets-and-warrants-lookup-form/',
   '/browse-submissions': '/',
   '/submission-confirmed': '/thank-you/',
-  '/personal-injury-lawyer-el-paso': '/',
   '/category/traffic-ticket-blog': '/blogs/',
   '/blog': '/blogs/',
   '/author/robertnavar': '/',

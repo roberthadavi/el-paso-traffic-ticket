@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import LegacyContent from '../components/LegacyContent.astro';
+import RelatedServices from '../components/RelatedServices.astro';
+import html from '../legacy/pages/personal-injury-lawyer-el-paso.html?raw';
+const title = 'Personal Injury Lawyer El Paso | Car Accident Attorney Robert Navar';
+const description = 'El Paso personal injury lawyer Robert Navar helps car accident and injury victims in El Paso County recover what they are owed. Free consultation, no fee unless we win.';
+---
+<Base prefix="single_page" bodyClass="page-template-default page jet-engine-optimized-dom elementor-default elementor-kit-5 ct-elementor-default-template" title={title} description={description} path="/personal-injury-lawyer-el-paso/">
+  <LegacyContent html={html} />
+  <RelatedServices slugs={['traffic-tickets', 'record-clearing', 'wills-and-estate-planning']} title="Other ways we can help" />
+</Base>

@@ -1,0 +1,6 @@
+---
+// Visible label on the dev site telling David which photo goes here. Remove the class `ept-ph` once real photos are in.
+interface Props { label: string }
+const { label } = Astro.props;
+---
+<div class="ept-ph" aria-hidden="true"><span class="ept-ph-tag">PHOTO PLACEHOLDER</span><span class="ept-ph-label">{label}</span></div>

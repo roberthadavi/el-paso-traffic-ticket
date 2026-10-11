@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import ServicePage from '../../components/ServicePage.astro';
+import { SERVICES, hubOf } from '../../data/services';
+import { loadService } from '../../lib/services';
+import { SITE } from '../../data/site';
+export function getStaticPaths() {
+  return SERVICES.filter((s) => s.slug).map((s) => ({ params: { hub: hubOf(s.hub).path.replace(/\//g, ''), slug: s.slug }, props: { slug: s.slug } }));
+}
+const { slug } = Astro.props;
+const S = SERVICES.find((s) => s.slug === slug)!;
+const H = hubOf(S.hub);
+const c = loadService(slug);
+if (!c) throw new Error(`Missing service content: src/content/services/${slug}.json`);
+const faq = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: c.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, ' ').trim() } })) };
+const crumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url + '/' }, { '@type': 'ListItem', position: 2, name: H.name, item: SITE.url + H.path }, { '@type': 'ListItem', position: 3, name: c.h1, item: SITE.url + S.path }] };
+const service: Record<string, unknown> = { '@context': 'https://schema.org', '@type': 'Service', '@id': `${SITE.url}${S.path}#service`, name: S.gbp, serviceType: S.name, url: SITE.url + S.path, description: c.metaDescription, provider: { '@id': `${SITE.url}/#organization` }, areaServed: SITE.areaServed.map((n) => ({ '@type': 'City', name: n })) };
+if (S.price) service.offers = { '@type': 'Offer', price: S.price.replace('$', ''), priceCurrency: 'USD', description: `Flat fee per ticket, ${S.name}` };
+---
+<Base title={c.title} description={c.metaDescription} path={S.path} prefix="single_page" bodyClass="page-template-default page jet-engine-optimized-dom elementor-default elementor-kit-5 elementor-page ct-elementor-default-template" jsonLd={[faq, crumbs, service]} pageType="WebPage">
+  <main class="site-main hfeed" id="main" tabindex="-1"><div class="ct-container-full" data-content="normal"><article class="page type-page status-publish hentry"><div class="entry-content is-layout-constrained">
+    <ServicePage content={c} path={S.path} hub={S.hub} slug={slug} price={S.price} gbp={S.gbp} />
+  </div></article></div></main>
+</Base>

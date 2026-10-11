@@ -58,3 +58,49 @@
 .elementor-nav-menu--main .menu-item-has-children { position: relative; }
 .elementor-nav-menu--main .menu-item-has-children > .sub-menu { display: none; position: absolute; top: 100%; left: 0; min-width: 12em; z-index: 1000; }
 .elementor-nav-menu--main .menu-item-has-children:hover > .sub-menu, .elementor-nav-menu--main .menu-item-has-children:focus-within > .sub-menu { display: block; }
+
+/* ===== Service / hub pages (core 30) ===== */
+.ept-service .ept-crumbs { width: 100%; margin: 0 0 8px; font-family: "Open Sans", sans-serif; font-size: 13px; }
+.ept-service .ept-crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; color: rgba(255,255,255,.75); }
+.ept-service .ept-crumbs li + li::before { content: "›"; margin-right: 6px; color: rgba(255,255,255,.5); }
+.ept-service .ept-crumbs a { color: #fff; text-decoration: none; }
+.ept-service .ept-crumbs a:hover { text-decoration: underline; }
+.ept-summary-wrap { --padding-top: 40px !important; --padding-bottom: 0 !important; }
+.ept-summary-wrap > .e-con-inner { display: block !important; }
+.ept-summary { background: #fff; border-left: 5px solid #f44336; box-shadow: 0 5px 15px rgba(0,0,0,.08); border-radius: 6px; padding: 22px 26px; font-family: "Open Sans", sans-serif; }
+.ept-summary-kicker { margin: 0 0 8px; font-family: Raleway, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: #f44336; }
+.ept-summary ul { margin: 0; padding-left: 20px; }
+.ept-summary li { margin: 6px 0; font-size: 15.5px; line-height: 1.6; color: #333; }
+.ept-price { margin: 14px 0 0; padding-top: 12px; border-top: 1px solid #eee; font-size: 15px; color: #333; }
+.ept-price strong { color: #f44336; font-size: 20px; }
+.ept-price span { color: #666; }
+.ept-price a { color: #f44336; font-weight: 600; }
+.ept-service .ept-photo { position: relative; min-height: 380px; background-size: cover; background-position: center; border-radius: 4px; }
+.ept-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; background: repeating-linear-gradient(45deg, rgba(0,0,0,.04) 0 12px, rgba(0,0,0,0) 12px 24px); }
+.ept-ph-tag { font-family: Raleway, sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 2px; background: #f44336; color: #fff; padding: 5px 10px; border-radius: 3px; margin-bottom: 10px; }
+.ept-ph-label { font-family: "Open Sans", sans-serif; font-size: 16px; font-weight: 600; color: #333; max-width: 420px; line-height: 1.45; background: rgba(255,255,255,.85); padding: 8px 12px; border-radius: 4px; }
+.ept-cards-wrap { --padding-top: 50px !important; --padding-bottom: 50px !important; }
+.ept-cards-wrap > .e-con-inner { display: block !important; }
+.ept-h2 { font-family: Raleway, sans-serif; font-size: 30px; font-weight: 700; color: #f44336; margin: 0 0 22px; }
+.ept-h2-red { font-family: Raleway, sans-serif; font-size: 30px; font-weight: 700; color: #f44336; margin: 0 0 18px; }
+.ept-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+@media (max-width: 1024px) { .ept-cards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .ept-cards { grid-template-columns: 1fr; } }
+.ept-card { display: flex; flex-direction: column; gap: 8px; background: #fff; border-radius: 8px; box-shadow: 0 5px 10px rgba(0,0,0,.1); padding: 22px 22px 18px; text-decoration: none; color: #222; transition: transform .15s, box-shadow .15s; font-family: "Open Sans", sans-serif; }
+.ept-card:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(0,0,0,.14); }
+.ept-card-kicker { font-size: 12px; color: #777; }
+.ept-card-title { font-family: Raleway, sans-serif; font-size: 19px; font-weight: 600; color: #222; line-height: 1.3; }
+.ept-card-price { font-size: 13px; color: #f44336; font-weight: 600; }
+.ept-card-more { margin-top: auto; display: inline-block; text-align: center; border: 1px solid #222; padding: 8px 12px; font-size: 13px; font-weight: 600; letter-spacing: .3px; color: #222; }
+.ept-card:hover .ept-card-more { background: #222; color: #fff; }
+.ept-next { display: block; background: #212121; color: #fff; border-radius: 8px; padding: 26px 30px; margin: 0 0 40px; text-decoration: none; font-family: "Open Sans", sans-serif; }
+.ept-next:hover { background: #000; }
+.ept-next-kicker { display: block; font-family: Raleway, sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #f44336; margin-bottom: 6px; }
+.ept-next-title { display: block; font-family: Raleway, sans-serif; font-weight: 700; font-size: 26px; color: #fff; margin-bottom: 6px; }
+.ept-next-blurb { display: block; font-size: 15px; color: #ccc; }
+.ept-author { margin: 36px 0 0; font-family: "Open Sans", sans-serif; font-size: 13px; color: #777; border-top: 1px solid #eee; padding-top: 16px; }
+.ept-author a { color: #f44336; }
+.ept-gbp { display: block; margin-top: 4px; color: #aaa; }
+.ept-service .elementor-16 .elementor-element-9b421ce { margin-top: 40px; }
+.ept-defend-link { color: inherit; text-decoration: none; }
+.ept-defend-link:hover { color: #f44336; text-decoration: underline; }

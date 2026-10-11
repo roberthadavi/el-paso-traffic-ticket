@@ -1,10 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
 import LegacyContent from '../components/LegacyContent.astro';
+import RelatedServices from '../components/RelatedServices.astro';
 import html from '../legacy/pages/occupational-license.html?raw';
 const title = 'Occupational License - Elpaso Traffic Ticket';
 const description = 'If your driver’s license has been suspended or revoked, you may still be eligible to obtain an Occupational Driver’s License (ODL)';
 ---
 <Base prefix="single_page" bodyClass="page-template page-template-elementor_header_footer page jet-engine-optimized-dom elementor-default elementor-template-full-width elementor-kit-5 elementor-page" title={title} description={description} path="/occupational-license/">
   <LegacyContent html={html} />
+  <RelatedServices slugs={['occupational-drivers-license', 'omni-hold-removal', 'driving-while-license-invalid']} next={{ slug:  'occupational-drivers-license', label: "Read the full guide", blurb: "Eligibility, SR-22, hours and routes, costs and timeline for an El Paso occupational license." }} />
 </Base>
