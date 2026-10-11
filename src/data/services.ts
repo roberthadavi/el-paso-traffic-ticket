@@ -51,7 +51,7 @@ const META: Record<string, [string, string]> = {
 };
 
 // path = hub path + slug (hub pages themselves are built from the hub record)
-const S = (hub: HubId, slug: string, name: string, gbp: string, price?: string): ServiceMeta => ({ slug, hub, name, gbp, price, path: `${HUBS.find((h) => h.id === hub)!.path}${slug}/`, icon: META[slug]?.[0] || 'fa-gavel', blurb: META[slug]?.[1] || '' });
+const S = (hub: HubId, slug: string, name: string, gbp: string, price?: string): ServiceMeta => ({ slug, hub, name, gbp, price, path: slug ? `${HUBS.find((h) => h.id === hub)!.path}${slug}/` : HUBS.find((h) => h.id === hub)!.path, icon: META[slug]?.[0] || 'fa-gavel', blurb: META[slug]?.[1] || '' });
 
 export const SERVICES: ServiceMeta[] = [
   // Ticket defense (12)
