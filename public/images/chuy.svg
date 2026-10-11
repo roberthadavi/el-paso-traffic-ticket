@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Chuy, chat assistant">
+  <defs>
+    <clipPath id="c"><circle cx="60" cy="60" r="58"/></clipPath>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe6a7"/><stop offset="1" stop-color="#f7b267"/></linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="58" fill="url(#bg)"/>
+  <g clip-path="url(#c)">
+    <!-- suit jacket -->
+    <path d="M10 128 C12 96 30 84 48 82 L60 96 L72 82 C90 84 108 96 110 128 Z" fill="#1f2937"/>
+    <!-- white shirt -->
+    <path d="M48 82 L60 112 L72 82 L66 86 L60 88 L54 86 Z" fill="#ffffff"/>
+    <!-- collar -->
+    <path d="M48 82 L56 90 L60 85 L64 90 L72 82 L66 80 L60 84 L54 80 Z" fill="#f3f4f6"/>
+    <!-- tie -->
+    <path d="M57 86 h6 l-1 4 l3 18 l-5 6 l-5 -6 l3 -18 z" fill="#f44336"/>
+    <path d="M57 86 h6 l-1 4 h-4 z" fill="#c62828"/>
+    <!-- lapels -->
+    <path d="M48 82 L44 110 L58 96 Z" fill="#111827"/>
+    <path d="M72 82 L76 110 L62 96 Z" fill="#111827"/>
+    <!-- neck -->
+    <path d="M51 66 h18 v14 c0 5 -18 5 -18 0 z" fill="#d99a6c"/>
+    <!-- hair back -->
+    <path d="M30 56 C28 30 40 18 60 18 C80 18 92 30 90 56 L91 84 C84 82 79 78 77 70 L43 70 C41 78 36 82 29 84 Z" fill="#5b3a1e"/>
+    <!-- face -->
+    <ellipse cx="60" cy="52" rx="20" ry="24" fill="#e8ad7d"/>
+    <!-- beard -->
+    <path d="M40 54 C40 74 48 83 60 84 C72 83 80 74 80 54 C77 63 70 67 60 67 C50 67 43 63 40 54 Z" fill="#5b3a1e"/>
+    <!-- mouth (inside the beard) -->
+    <path d="M51 68 q9 7 18 0 q-9 4 -18 0 z" fill="#7a3b2e"/>
+    <path d="M53 68.5 q7 2.5 14 0 q-7 1.5 -14 0 z" fill="#fff"/>
+    <!-- mustache -->
+    <path d="M49 64 q11 -6 22 0 q-5 4 -11 2.5 q-6 1.5 -11 -2.5 z" fill="#4a2e16"/>
+    <!-- hair front -->
+    <path d="M40 46 C40 30 48 24 60 24 C72 24 80 30 80 46 C76 38 70 34 60 34 C50 34 44 38 40 46 Z" fill="#6b4524"/>
+    <!-- ears -->
+    <circle cx="40" cy="52" r="3.5" fill="#d99a6c"/><circle cx="80" cy="52" r="3.5" fill="#d99a6c"/>
+    <!-- eyes -->
+    <ellipse cx="52" cy="50" rx="3" ry="3.4" fill="#2b1d12"/><ellipse cx="68" cy="50" rx="3" ry="3.4" fill="#2b1d12"/>
+    <circle cx="53" cy="49" r="1" fill="#fff"/><circle cx="69" cy="49" r="1" fill="#fff"/>
+    <!-- brows -->
+    <path d="M47 44 q5 -3 10 0" stroke="#4a2e16" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M63 44 q5 -3 10 0" stroke="#4a2e16" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- nose -->
+    <path d="M60 52 q-3 6 1 8" stroke="#c98a5e" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- cheeks -->
+    <circle cx="46" cy="58" r="3" fill="#f2a08a" opacity=".45"/><circle cx="74" cy="58" r="3" fill="#f2a08a" opacity=".45"/>
+  </g>
+  <circle cx="60" cy="60" r="58" fill="none" stroke="#fff" stroke-width="3"/>
+</svg>

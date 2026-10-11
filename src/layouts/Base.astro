@@ -1,5 +1,6 @@
 ---
 import Header from '../components/Header.astro';
+import Chuy from '../components/Chuy.astro';
 import Footer from '../components/Footer.astro';
 import { SITE } from '../data/site';
 import '../styles/site.css';
@@ -75,6 +76,7 @@ const webpage = { '@context': 'https://schema.org', '@type': pageType, '@id': `$
     </div>
     <Footer />
     <a aria-label="Call Now Button" href={`tel:${SITE.phone}`} id="callnowbutton" class="call-now-button cnb-zoom-100 cnb-zindex-10 cnb-single cnb-mright cnb-displaymode cnb-displaymode-mobile-only cnb-phone-icon">Call Now</a>
+    <Chuy />
     <script src="../scripts/site.ts"></script>
     <script async src="https://cdn.trustindex.io/loader.js"></script>
     <div class="gtranslate_wrapper" id="gt-wrapper"></div>
