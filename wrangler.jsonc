@@ -8,5 +8,5 @@
   "observability": { "enabled": true, "logs": { "enabled": true, "invocation_logs": true } },
   "workers_dev": true,
   "preview_urls": true,
-  "vars": { "LEAD_TO_EMAIL": "david@trafficfirm.org", "LEAD_FROM_EMAIL": "noreply@elpasotrafficticketfirm.com", "LEAD_FROM_NAME": "El Paso Traffic Ticket Firm" }
+  "vars": { "LEAD_TO_EMAIL": "david@trafficfirm.org", "LEAD_FROM_EMAIL": "noreply@elpasotrafficticket.com", "LEAD_FROM_NAME": "El Paso Traffic Ticket Firm" }
 }

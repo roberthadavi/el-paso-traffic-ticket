@@ -16,7 +16,7 @@ export interface Env {
 
 const CANONICAL_HOST = 'elpasotrafficticket.com';
 const DEFAULT_TO = 'help@elpasotrafficticket.com';
-const DEFAULT_FROM = 'noreply@elpasotrafficticketfirm.com';
+const DEFAULT_FROM = 'noreply@elpasotrafficticket.com';
 
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
 const json = (obj: unknown, status = 200) => new Response(JSON.stringify(obj), { status, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } });
