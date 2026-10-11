@@ -1,12 +1,21 @@
 ---
 import Base from '../layouts/Base.astro';
-import LegacyContent from '../components/LegacyContent.astro';
-import RelatedServices from '../components/RelatedServices.astro';
-import html from '../legacy/pages/personal-injury-lawyer-el-paso.html?raw';
-const title = 'Personal Injury Lawyer El Paso | Car Accident Attorney Robert Navar';
-const description = 'El Paso personal injury lawyer Robert Navar helps car accident and injury victims in El Paso County recover what they are owed. Free consultation, no fee unless we win.';
+import ServicePage from '../components/ServicePage.astro';
+import { SERVICES, hubOf } from '../data/services';
+import { loadService } from '../lib/services';
+import { SITE } from '../data/site';
+const slug = 'personal-injury';
+const S = SERVICES.find((s) => s.hub === 'personal-injury')!; // path '/personal-injury-lawyer-el-paso/', slug ''
+const H = hubOf('personal-injury');
+const c = loadService(slug);
+if (!c) throw new Error(`Missing service content: src/content/services/${slug}.json`);
+const faq = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: c.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, ' ').trim() } })) };
+// Breadcrumbs: Home › Personal Injury (this page is both the hub and the single service page)
+const crumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url + '/' }, { '@type': 'ListItem', position: 2, name: H.name, item: SITE.url + S.path }] };
+const service: Record<string, unknown> = { '@context': 'https://schema.org', '@type': 'Service', '@id': `${SITE.url}${S.path}#service`, name: S.gbp, serviceType: S.name, url: SITE.url + S.path, description: c.metaDescription, provider: { '@id': `${SITE.url}/#organization` }, areaServed: SITE.areaServed.map((n) => ({ '@type': 'City', name: n })) };
 ---
-<Base prefix="single_page" bodyClass="page-template-default page jet-engine-optimized-dom elementor-default elementor-kit-5 ct-elementor-default-template" title={title} description={description} path="/personal-injury-lawyer-el-paso/">
-  <LegacyContent html={html} />
-  <RelatedServices slugs={['traffic-tickets', 'record-clearing', 'wills-and-estate-planning']} title="Other ways we can help" />
+<Base title={c.title} description={c.metaDescription} path={S.path} prefix="single_page" bodyClass="page-template-default page jet-engine-optimized-dom elementor-default elementor-kit-5 elementor-page ct-elementor-default-template" jsonLd={[faq, crumbs, service]} pageType="WebPage">
+  <main class="site-main hfeed" id="main" tabindex="-1"><div class="ct-container-full" data-content="normal"><article class="page type-page status-publish hentry"><div class="entry-content is-layout-constrained">
+    <ServicePage content={c} path={S.path} hub="personal-injury" slug={slug} isHub={true} gbp={S.gbp} />
+  </div></article></div></main>
 </Base>

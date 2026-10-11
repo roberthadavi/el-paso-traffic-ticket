@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import SimplePage from '../components/SimplePage.astro';
+import { SITE } from '../data/site';
+---
+<Base title="Privacy Policy | El Paso Traffic Ticket Firm" description="How El Paso Traffic Ticket Firm collects, uses and protects the information you submit through this website's forms, chat and phone contact." path="/privacy-policy/" prefix="single_page" bodyClass="page-template-default page jet-engine-optimized-dom elementor-default elementor-kit-5 elementor-page ct-elementor-default-template" noindex={false}>
+  <SimplePage h1="Privacy Policy">
+    <p class="ept-simple-meta">Effective October 11, 2026 · El Paso Traffic Ticket Firm – Attorney Robert A. Navar, {SITE.address.street}, {SITE.address.city}, {SITE.address.state} {SITE.address.zip}</p>
+    <p>This website belongs to the law office of Robert A. Navar in El Paso, Texas. Because people use it to tell us about traffic tickets, warrants and other legal problems, we want to be clear about what we collect and what we do with it.</p>
+
+    <h2>Information you give us</h2>
+    <p>When you use the <a href="/fight-my-ticket/">hire-online form</a>, the <a href="/traffic-tickets-and-warrants-lookup-form/">ticket and warrant lookup form</a>, the <a href="/contact-us/">contact form</a> or the website chat, you may provide your name, phone number, email address, date of birth, driver's license number, citation numbers, the court involved, and a description of your situation. We ask only for what the office needs to identify your case and contact you. Please do not put payment card numbers or Social Security numbers in any form or chat message.</p>
+
+    <h2>How we use it</h2>
+    <ul>
+      <li>To look up your case, contact you about it, and provide legal services if you hire the office.</li>
+      <li>To send you a confirmation and follow-up about the request you made.</li>
+      <li>To keep records the office is required to keep, and to comply with the Texas Disciplinary Rules of Professional Conduct.</li>
+    </ul>
+    <p>We do not sell your information, and we do not share it with advertisers. Form and chat submissions are delivered to the office by email and stored in the office's case files. If you hire the office, your information is handled under the attorney-client relationship and the confidentiality rules that apply to lawyers in Texas.</p>
+
+    <h2>Chat assistant</h2>
+    <p>The website chat ("Chuy") is an automated assistant, not a lawyer. Messages you type are processed by a language model to generate replies, and the conversation, including any contact details you share, is sent to the office so a person can follow up. Anything you tell the chat before you hire the office is a request for information, not confidential legal advice.</p>
+
+    <h2>Payments</h2>
+    <p>If you pay online, your card details are entered on the payment processor's secure page, not on this website, and the office does not receive or store your full card number.</p>
+
+    <h2>Website data, cookies and third parties</h2>
+    <p>Our hosting and security provider (Cloudflare) records standard server logs, including your IP address, for security and performance. Pages may load third-party services such as Google Fonts, the Trustindex review widget, the GTranslate translation widget and embedded YouTube video; each may set its own cookies under its own privacy policy. We do not run advertising trackers. You can block cookies in your browser; the site will still work.</p>
+
+    <h2>Security</h2>
+    <p>Information you submit travels over an encrypted connection (HTTPS) and the office restricts who can see case files. No method of transmission or storage is completely secure, so we cannot promise absolute security, but we take reasonable steps to protect what you share.</p>
+
+    <h2>Your choices</h2>
+    <p>You may ask what information the office has about you, ask us to correct it, or ask us to delete information we are not required to keep. Contact the office at <a href={`tel:${SITE.phone}`}>{SITE.phone}</a> or <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+
+    <h2>Children</h2>
+    <p>This website is intended for adults. We do not knowingly collect information from anyone under 18 except as part of a parent's or guardian's request for legal help.</p>
+
+    <h2>Changes</h2>
+    <p>We may update this policy; the effective date at the top will change when we do. Continued use of the site after an update means you accept the revised policy.</p>
+
+    <p>See also our <a href="/terms-of-use/">Terms of Use</a> and <a href="/disclaimer/">Legal Disclaimer</a>.</p>
+  </SimplePage>
+</Base>

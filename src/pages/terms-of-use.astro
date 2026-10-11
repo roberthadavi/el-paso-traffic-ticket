@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import SimplePage from '../components/SimplePage.astro';
+import { SITE } from '../data/site';
+---
+<Base title="Terms of Use | El Paso Traffic Ticket Firm" description="Terms for using elpasotrafficticket.com, the website of El Paso attorney Robert A. Navar, including what online forms and chat do and do not do." path="/terms-of-use/" prefix="single_page" bodyClass="page-template-default page jet-engine-optimized-dom elementor-default elementor-kit-5 elementor-page ct-elementor-default-template">
+  <SimplePage h1="Terms of Use">
+    <p class="ept-simple-meta">Effective October 11, 2026</p>
+    <p>By using elpasotrafficticket.com you agree to these terms. If you do not agree, please do not use the site.</p>
+
+    <h2>Information only, not legal advice</h2>
+    <p>The content on this website is general information about Texas law and El Paso County courts. It is not legal advice, it may not reflect the most recent changes in the law or in a court's practice, and it may not apply to your situation. Do not act or refrain from acting based on anything on this site without speaking to a lawyer about your specific case.</p>
+
+    <h2>No attorney-client relationship until engagement</h2>
+    <p>Submitting a form, sending a chat message, emailing, texting or calling the office does not make you a client. An attorney-client relationship is created only when the office agrees to represent you and you accept the terms of engagement (for traffic tickets, usually by completing the online hire form and payment, followed by the office's confirmation). Until then, information you send is treated as a request for information and is not protected by the attorney-client privilege.</p>
+
+    <h2>Court deadlines are yours until the office confirms</h2>
+    <p>Sending a form or chat message does not stop any court deadline, reset any appearance date, or recall any warrant. Deadlines on your citation or court notice remain your responsibility until the office confirms in writing that it has filed an appearance in your case.</p>
+
+    <h2>Online hiring and fees</h2>
+    <p>Flat attorney fees shown on this site are for the attorney's services in the court listed and do not include court fines, court costs, state fees, driving-safety-course costs or other third-party charges, which are set by the court or provider. Fee terms, refund terms and the scope of representation are set out in the engagement terms you accept when you hire the office.</p>
+
+    <h2>Chat assistant</h2>
+    <p>The website chat is an automated assistant. It can make mistakes, it does not give legal advice, and nothing it says is a promise about fees, outcomes or timing. The office reviews chat conversations that include contact details so a person can follow up.</p>
+
+    <h2>No guarantee of results</h2>
+    <p>Descriptions of services, outcomes that are sometimes available (such as dismissal or deferred disposition), and testimonials describe possibilities and other clients' experiences. They are not a prediction or guarantee of the result in your case. Every case depends on its own facts, the court and the law.</p>
+
+    <h2>Use of the site</h2>
+    <p>You agree not to misuse the site: no automated scraping, no attempts to interfere with its operation or security, and no submitting false information or information about someone else without their permission. Content on this site is owned by the office or used with permission and may not be copied for commercial use without written consent.</p>
+
+    <h2>Third-party links</h2>
+    <p>Links to court websites, state agencies and other third parties are provided for convenience. The office does not control those sites and is not responsible for their content.</p>
+
+    <h2>Limitation of liability</h2>
+    <p>To the fullest extent permitted by law, the office is not liable for any loss arising from use of this website or reliance on its content. Nothing in these terms limits the office's professional obligations to clients it has agreed to represent.</p>
+
+    <h2>Governing law</h2>
+    <p>These terms are governed by the laws of the State of Texas. Any dispute about this website will be heard in the courts of El Paso County, Texas.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about these terms: <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or <a href={`tel:${SITE.phone}`}>{SITE.phone}</a>. See also the <a href="/privacy-policy/">Privacy Policy</a> and <a href="/disclaimer/">Legal Disclaimer</a>.</p>
+  </SimplePage>
+</Base>

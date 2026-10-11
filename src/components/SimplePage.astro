@@ -1,0 +1,14 @@
+---
+// Plain content page (legal pages, attorney bio) in the Blocksy single-page wrappers so the ported CSS styles it.
+interface Props { h1: string; kicker?: string }
+const { h1, kicker } = Astro.props;
+---
+<main class="site-main hfeed" id="main" tabindex="-1"><div class="ct-container-full" data-content="normal"><article class="page type-page status-publish hentry"><div class="entry-content is-layout-constrained">
+  <div class="elementor elementor-832 ept-service ept-simple">
+    <div class="elementor-element e-flex e-con-boxed e-con e-parent" data-e-type="container"><div class="e-con-inner"><div class="ept-simple-body">
+      {kicker && <p class="ept-summary-kicker">{kicker}</p>}
+      <h1 class="ept-simple-h1">{h1}</h1>
+      <slot />
+    </div></div></div>
+  </div>
+</div></article></div></main>

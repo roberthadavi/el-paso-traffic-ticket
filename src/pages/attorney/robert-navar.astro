@@ -1,0 +1,66 @@
+---
+import Base from '../../layouts/Base.astro';
+import SimplePage from '../../components/SimplePage.astro';
+import Placeholder from '../../components/Placeholder.astro';
+import RelatedServices from '../../components/RelatedServices.astro';
+import { SITE } from '../../data/site';
+const title = 'Attorney Robert A. Navar | El Paso, TX | Traffic Ticket & Warrant Defense';
+const description = 'Robert A. Navar is a Texas attorney practicing in El Paso County courts: traffic tickets, warrants, record clearing, occupational licenses, wills and injury claims. English and Spanish.';
+const path = '/attorney/robert-navar/';
+const person = {
+  '@context': 'https://schema.org', '@type': ['Person', 'Attorney'], '@id': `${SITE.url}${path}#person`,
+  name: 'Robert A. Navar', alternateName: 'Robert Andrew Navar', jobTitle: 'Attorney', url: SITE.url + path,
+  worksFor: { '@id': `${SITE.url}/#organization` }, telephone: SITE.phoneE164, email: SITE.email,
+  address: { '@type': 'PostalAddress', streetAddress: SITE.address.street, addressLocality: SITE.address.city, addressRegion: SITE.address.state, postalCode: SITE.address.zip, addressCountry: 'US' },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'SMU Dedman School of Law' },
+  knowsLanguage: ['en', 'es'],
+  knowsAbout: ['Traffic ticket defense', 'Traffic warrants', 'Occupational driver\'s licenses', 'Criminal record expunction', 'Wills and estate planning', 'Personal injury'],
+  sameAs: SITE.sameAs,
+};
+const crumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url + '/' }, { '@type': 'ListItem', position: 2, name: 'Attorney Robert A. Navar', item: SITE.url + path }] };
+---
+<Base title={title} description={description} path={path} prefix="single_page" bodyClass="page-template-default page jet-engine-optimized-dom elementor-default elementor-kit-5 elementor-page ct-elementor-default-template" jsonLd={[person, crumbs]} pageType="ProfilePage">
+  <SimplePage h1="Attorney Robert A. Navar — El Paso, Texas" kicker="About the attorney">
+    <p class="ept-simple-meta">Last reviewed October 11, 2026</p>
+    <div class="ept-bio">
+      <div class="ept-photo" role="img" aria-label="Attorney Robert A. Navar"><Placeholder label="Professional portrait of Attorney Robert A. Navar, office or courthouse background (staff photo)" /></div>
+      <div>
+        <p>Robert A. Navar is a Texas attorney whose practice is based in El Paso. His office handles traffic-ticket and warrant defense in El Paso County's courts every week, and he also assists clients with criminal record clearing, occupational driver's licenses, wills and estate documents, and car-accident injury claims.</p>
+        <p>He works with clients in English and Spanish, and the office is on the East Side at Vista Del Sol and Zaragoza, with easy access from Loop 375 and I-10.</p>
+        <div class="ept-bio-facts"><dl>
+          <dt>Licensed</dt><dd>State Bar of Texas, admitted 2005</dd>
+          <dt>Law school</dt><dd>Juris Doctor, SMU Dedman School of Law (2004)</dd>
+          <dt>Languages</dt><dd>English, Spanish</dd>
+          <dt>Office</dt><dd>{SITE.address.street}, {SITE.address.city}, {SITE.address.state} {SITE.address.zip}</dd>
+          <dt>Phone / text</dt><dd><a href={`tel:${SITE.phone}`}>{SITE.phone}</a></dd>
+          <dt>Email</dt><dd><a href={`mailto:${SITE.email}`}>{SITE.email}</a></dd>
+        </dl></div>
+      </div>
+    </div>
+
+    <h2>Practice areas</h2>
+    <ul>
+      <li><a href="/traffic-tickets/">Traffic ticket defense</a> — speeding, no insurance, no license, red light and stop sign, school zone, texting, registration and inspection, and other Class C citations.</li>
+      <li><a href="/traffic-tickets/cdl-ticket/">CDL and commercial driver tickets</a>, including <a href="/traffic-tickets/trucking-dot-violations/">trucking and DOT violations</a>.</li>
+      <li><a href="/warrants/">Traffic warrants</a> — warrant recall, <a href="/warrants/failure-to-appear/">failure to appear</a> charges and <a href="/warrants/omni-hold-removal/">OMNI holds</a> that block license renewal.</li>
+      <li><a href="/drivers-license/">Driver's license problems</a> — <a href="/drivers-license/occupational-drivers-license/">occupational driver's licenses</a> and <a href="/traffic-tickets/driving-while-license-invalid/">driving while license invalid</a>.</li>
+      <li><a href="/criminal-expungement/">Criminal record clearing</a> — expunction and orders of nondisclosure.</li>
+      <li><a href="/wills-and-estate-planning/">Wills, powers of attorney, medical directives and probate</a>.</li>
+      <li><a href="/personal-injury-lawyer-el-paso/">Car accident and personal injury claims</a>.</li>
+    </ul>
+
+    <h2>Courts regularly handled</h2>
+    <p>The office appears in <a href="/courts/el-paso-municipal-court/">El Paso Municipal Court</a> (El Paso Police Department citations), the <a href="/courts/el-paso-county-justice-of-the-peace/">El Paso County Justice of the Peace courts</a> (Sheriff's Office, DPS trooper and constable citations), and the municipal courts of <a href="/courts/horizon-city-municipal-court/">Horizon City</a>, <a href="/courts/socorro-municipal-court/">Socorro</a>, <a href="/courts/san-elizario-clint-anthony-vinton-municipal-courts/">San Elizario, Clint, Anthony and Vinton</a>. The <a href="/courts/">courts guide</a> explains how to tell which court has your ticket.</p>
+
+    <h2>How the office works with clients</h2>
+    <p>Most traffic matters start with a photo of the citation. The office identifies the court, files the attorney's appearance so the court communicates with the office instead of the driver, and then reviews the citation, the driving record and the available options — dismissal, deferred disposition, a driving safety course or a negotiated change to the charge — before recommending one. The attorney's fee for traffic tickets is a <a href="/fight-my-ticket/">flat fee posted online</a>; court fines and costs are set by the court and are separate.</p>
+    <p>No outcome is promised. Every recommendation is based on the specific citation, the court it is in, the driver's record and the circumstances of the stop.</p>
+
+    <h2>Attorney advertising and reviewer statement</h2>
+    <p>Robert A. Navar is responsible for the content of this website. The legal information pages on this site carry a "Written and reviewed by" line with the date of the most recent review. This website is attorney advertising; it provides general information about Texas law and El Paso County courts and is not legal advice. Reading it, or contacting the office through a form, phone call or chat, does not by itself create an attorney-client relationship. See the <a href="/disclaimer/">full disclaimer</a>.</p>
+
+    <h2>Contact</h2>
+    <p>Call or text <a href={`tel:${SITE.phone}`}>{SITE.phone}</a>, <a href="/schedule-an-appointment/">schedule an appointment</a>, or <a href="/contact-us/">send a message</a>. Para asistencia en español, llame al mismo número.</p>
+  </SimplePage>
+  <RelatedServices slugs={['traffic-tickets', 'warrants', 'courts']} title="Where to start" />
+</Base>

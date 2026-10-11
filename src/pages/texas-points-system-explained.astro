@@ -2,11 +2,14 @@
 import Base from '../layouts/Base.astro';
 import LegacyContent from '../components/LegacyContent.astro';
 import RelatedServices from '../components/RelatedServices.astro';
+import { SITE } from '../data/site';
 import html from '../legacy/pages/texas-points-system-explained.html?raw';
-const title = 'Texas Points System Explained - Elpaso Traffic Ticket';
-const description = 'The Driver Responsibility Program establishes a system that authorizes the Texas Department of Public Safety (DPS) to assess surcharges to an individual based on certain ...';
+const title = 'Texas Points System Repealed | El Paso Driving Record';
+const description = 'Texas ended its points and surcharge program in 2019. What still affects an El Paso driving record: convictions, insurance, DPS suspensions and CDL rules.';
+const path = '/texas-points-system-explained/';
+const article = { '@context': 'https://schema.org', '@type': 'BlogPosting', '@id': `${SITE.url}${path}#article`, headline: 'The Texas Points System Was Repealed — What Affects Your El Paso Driving Record Now', description, author: { '@type': 'Person', name: 'Robert A. Navar', url: `${SITE.url}/attorney/robert-navar/` }, publisher: { '@id': `${SITE.url}/#organization` }, datePublished: '2022-06-10', dateModified: '2026-10-11', mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE.url}${path}` }, image: `${SITE.url}/images/Rectangle-67.png`, inLanguage: 'en-US' };
 ---
-<Base prefix="single_blog_post" bodyClass="post-template-default single single-post single-format-standard jet-engine-optimized-dom elementor-default elementor-kit-5 ct-elementor-default-template" title={title} description={description} path="/texas-points-system-explained/" pageType="Article">
+<Base prefix="single_blog_post" bodyClass="post-template-default single single-post single-format-standard jet-engine-optimized-dom elementor-default elementor-kit-5 ct-elementor-default-template" title={title} description={description} path={path} pageType="Article" jsonLd={[article]}>
   <LegacyContent html={html} />
   <RelatedServices slugs={['deferred-adjudication-defensive-driving', 'occupational-drivers-license', 'driving-while-license-invalid']} next={{ slug:  'occupational-drivers-license', label: "Next step: suspended? Get an occupational license", blurb: "Who qualifies, what the court order lets you do, and how long it takes." }} />
 </Base>

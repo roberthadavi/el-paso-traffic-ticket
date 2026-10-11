@@ -3,10 +3,17 @@ import Base from '../layouts/Base.astro';
 import LegacyContent from '../components/LegacyContent.astro';
 import RelatedServices from '../components/RelatedServices.astro';
 import html from '../legacy/pages/faqs.html?raw';
-const title = 'FAQ\'s - Elpaso Traffic Ticket';
-const description = 'Your best option is to hire an experienced traffic ticket defense attorney who can help you beat your speeding violation, which will allow you to avoid the';
+const title = 'Traffic Ticket FAQs | El Paso, TX | Robert Navar';
+const description = 'Answers to common questions about El Paso traffic tickets, warrants, OMNI holds, CDL citations, suspended licenses and what hiring Attorney Robert Navar costs.';
+
+// Build FAQPage JSON-LD from the accordion items actually rendered on the page.
+const strip = (s: string) => s.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/\s+/g, ' ').trim();
+const faqs: { q: string; a: string }[] = [];
+const itemRe = /<details class="e-n-accordion-item"[\s\S]*?<div class="e-n-accordion-item-title-text">([\s\S]*?)<\/div>[\s\S]*?data-widget_type="text-editor.default">([\s\S]*?)<\/div>\s*<\/div>\s*<\/details>/g;
+for (const m of html.matchAll(itemRe)) faqs.push({ q: strip(m[1]), a: strip(m[2]) });
+const faq = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
 ---
-<Base prefix="single_page" bodyClass="page-template page-template-elementor_header_footer page jet-engine-optimized-dom elementor-default elementor-template-full-width elementor-kit-5 elementor-page" title={title} description={description} path="/faqs/" pageType="FAQPage">
+<Base prefix="single_page" bodyClass="page-template page-template-elementor_header_footer page jet-engine-optimized-dom elementor-default elementor-template-full-width elementor-kit-5 elementor-page" title={title} description={description} path="/faqs/" pageType="WebPage" jsonLd={[faq]}>
   <LegacyContent html={html} />
   <RelatedServices slugs={['traffic-tickets', 'warrants', 'courts']} />
 </Base>

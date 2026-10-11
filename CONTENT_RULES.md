@@ -24,3 +24,11 @@ Every page must read as if written and reviewed by an El Paso attorney. Refine; 
 
 ## Attorney facts (only these; flagged for his review)
 Robert Andrew Navar; Texas attorney, licensed 2005; J.D., SMU Dedman School of Law (2004); English and Spanish; office 11860 Vista Del Sol Dr. #119, El Paso, TX 79936; 915-503-1600; practices traffic-ticket and warrant defense across El Paso County courts, plus criminal record clearing, occupational licenses, wills/estate documents, and injury claims. Do not add years-of-experience counts, case counts, awards, or memberships.
+
+## URLs being retired (301) — never link to these; link to the replacement
+- `/occupational-license/` → `/drivers-license/occupational-drivers-license/`
+- `/effective-warrant-lawyer-el-paso/` → `/warrants/`
+- `/el-paso-warrants-lifted/` → `/warrants/traffic-warrant-recall/`
+- `/finding-a-traffic-ticket-dismissal/` → `/courts/ticket-dismissal/`
+- `/defensive-driving-in-el-paso-texas/` → `/courts/deferred-adjudication-defensive-driving/`
+- `/hire-us/` → `/fight-my-ticket/`

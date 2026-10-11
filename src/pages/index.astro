@@ -1,10 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
 import LegacyContent from '../components/LegacyContent.astro';
+import RelatedServices from '../components/RelatedServices.astro';
 import html from '../legacy/pages/home.html?raw';
-const title = 'Traffic Ticket Lawyer in El Paso, Texas';
-const description = 'Call (915) 503-1600 Traffic Ticket Lawyer Robert Navar today. I will fight to defend your traffic violation on your behalf without you having to go to court.';
+const [top, bottom] = html.split('<!--CARDS:home-->');
+const title = 'Traffic Ticket Lawyer El Paso, TX | Robert Navar';
+const description = "El Paso traffic ticket attorney Robert Navar handles tickets and warrants in Municipal, JP, Horizon City and Socorro courts. Flat fees from $59; hire online.";
 ---
 <Base prefix="single_page" bodyClass="home page-template-default page jet-engine-optimized-dom elementor-default elementor-kit-5 elementor-page ct-elementor-default-template" title={title} description={description} path="/">
-  <LegacyContent html={html} />
+  <LegacyContent html={top} />
+  <RelatedServices slugs={['traffic-tickets', 'warrants', 'licenses', 'occupational-drivers-license', 'cdl-ticket', 'courts', 'record-clearing', 'wills-and-estate-planning', 'personal-injury']} title="What we handle for El Paso drivers and families" />
+  <LegacyContent html={bottom} />
 </Base>

@@ -2,11 +2,14 @@
 import Base from '../layouts/Base.astro';
 import LegacyContent from '../components/LegacyContent.astro';
 import RelatedServices from '../components/RelatedServices.astro';
+import { SITE } from '../data/site';
 import html from '../legacy/pages/how-to-fight-a-traffic-ticket-in-el-paso-texas.html?raw';
-const title = 'How to Fight a Traffic Ticket in El Paso Texas - Elpaso Traffic Ticket';
-const description = 'Here are some steps you can use to Fight an El Paso Police Traffic Ticket yourself the process is time consuming but can be done ...';
+const title = 'How to Fight a Traffic Ticket | El Paso, TX | Robert Navar';
+const description = 'A step-by-step guide to contesting an El Paso traffic ticket: the roadside stop, your appearance date, discovery, pretrial offers, trial and follow-up.';
+const path = '/how-to-fight-a-traffic-ticket-in-el-paso-texas/';
+const article = { '@context': 'https://schema.org', '@type': 'BlogPosting', '@id': `${SITE.url}${path}#article`, headline: 'How to Fight a Traffic Ticket in El Paso, Texas', description, author: { '@type': 'Person', name: 'Robert A. Navar', url: `${SITE.url}/attorney/robert-navar/` }, publisher: { '@id': `${SITE.url}/#organization` }, datePublished: '2023-01-15', dateModified: '2026-10-11', mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE.url}${path}` }, image: `${SITE.url}/images/Rectangle-66.png`, inLanguage: 'en-US' };
 ---
-<Base prefix="single_blog_post" bodyClass="post-template-default single single-post single-format-standard jet-engine-optimized-dom elementor-default elementor-kit-5 ct-elementor-default-template" title={title} description={description} path="/how-to-fight-a-traffic-ticket-in-el-paso-texas/" pageType="Article">
+<Base prefix="single_blog_post" bodyClass="post-template-default single single-post single-format-standard jet-engine-optimized-dom elementor-default elementor-kit-5 ct-elementor-default-template" title={title} description={description} path={path} pageType="Article" jsonLd={[article]}>
   <LegacyContent html={html} />
   <RelatedServices slugs={['speeding-ticket', 'ticket-dismissal', 'deferred-adjudication-defensive-driving']} next={{ slug:  'ticket-dismissal', label: "Next step: the grounds that actually get tickets dismissed", blurb: "Officer no-shows, defective citations, radar calibration — the dismissal arguments we use every week." }} />
 </Base>

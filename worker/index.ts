@@ -94,8 +94,14 @@ async function handleFight(req: Request, env: Env, origin: string) {
 
 // Old WordPress URLs → new locations (keys have no trailing slash)
 const REDIRECTS: Record<string, string> = {
+  // Oct 2026 consolidation (duplicate / competing pages → the stronger page)
   '/hire-me': '/fight-my-ticket/',
-  
+  '/hire-us': '/fight-my-ticket/',
+  '/occupational-license': '/drivers-license/occupational-drivers-license/',
+  '/effective-warrant-lawyer-el-paso': '/warrants/',
+  '/el-paso-warrants-lifted': '/warrants/traffic-warrant-recall/',
+  '/finding-a-traffic-ticket-dismissal': '/courts/ticket-dismissal/',
+  '/defensive-driving-in-el-paso-texas': '/courts/deferred-adjudication-defensive-driving/',
   '/traffic-tickets-and-warrants-lookup-form-2': '/traffic-tickets-and-warrants-lookup-form/',
   '/traffic-ticket-and-warrants-lookup-form': '/traffic-tickets-and-warrants-lookup-form/',
   '/browse-submissions': '/',
@@ -133,6 +139,12 @@ export default {
       return Response.redirect(new URL('/', url.origin).toString(), 302);
     }
     if (url.pathname.startsWith('/api/')) return new Response('Not found', { status: 404 });
+    // robots.txt: staging (workers.dev) is closed to crawlers; production allows everything and names the sitemap
+    if (url.pathname === '/robots.txt') {
+      const staging = url.hostname.endsWith('.workers.dev');
+      const body = staging ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /thank-you/\n\nSitemap: https://${CANONICAL_HOST}/sitemap-index.xml\n`;
+      return new Response(body, { headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'public, max-age=3600' } });
+    }
     const res = await env.ASSETS.fetch(req);
     if (url.hostname.endsWith('.workers.dev')) {
       const h = new Headers(res.headers); h.set('X-Robots-Tag', 'noindex, nofollow');

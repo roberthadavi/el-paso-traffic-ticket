@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import SimplePage from '../components/SimplePage.astro';
+import { SITE } from '../data/site';
+---
+<Base title="Legal Disclaimer & Attorney Advertising | El Paso Traffic Ticket Firm" description="Attorney advertising notice, no-legal-advice and no-attorney-client-relationship disclaimer for the website of El Paso attorney Robert A. Navar." path="/disclaimer/" prefix="single_page" bodyClass="page-template-default page jet-engine-optimized-dom elementor-default elementor-kit-5 elementor-page ct-elementor-default-template">
+  <SimplePage h1="Legal Disclaimer">
+    <p class="ept-simple-meta">Effective October 11, 2026</p>
+    <h2>Attorney advertising</h2>
+    <p>This website is attorney advertising for the law office of Robert A. Navar, El Paso Traffic Ticket Firm, {SITE.address.street}, {SITE.address.city}, {SITE.address.state} {SITE.address.zip}. Robert A. Navar, a member of the State Bar of Texas, is the attorney responsible for its content. The firm's principal office is in El Paso, Texas. Unless otherwise stated, the attorney is not certified by the Texas Board of Legal Specialization.</p>
+
+    <h2>Not legal advice</h2>
+    <p>The information on this site is general information about Texas law and the practices of courts in El Paso County. It is not legal advice and is not a substitute for advice from a lawyer who knows the facts of your case. Laws and court practices change; pages carry the date they were last reviewed, but no page is guaranteed to be current or complete.</p>
+
+    <h2>No attorney-client relationship</h2>
+    <p>Reading this website, using the chat, or submitting a form, email, text or call does not create an attorney-client relationship. That relationship begins only when the office agrees to represent you and the engagement terms are accepted. Until then, please do not send confidential information beyond what a form asks for, and do not rely on any deadline being handled by the office.</p>
+
+    <h2>No guarantee of outcome</h2>
+    <p>Outcomes described on this site — dismissal, deferred disposition, a driving safety course, a warrant being recalled, a license being restored — are possibilities that depend on the citation, the court, the driving record and the circumstances. Past results and client reviews do not guarantee or predict a similar result in any other matter.</p>
+
+    <h2>Fees</h2>
+    <p>Attorney fees shown are for the attorney's services only. Court fines, court costs, state fees and third-party charges are separate and are set by the court or provider.</p>
+
+    <h2>Testimonials and reviews</h2>
+    <p>Reviews shown on this site are the opinions of the individuals who wrote them, published through a third-party review platform. They are not paid for and are not a promise about your case.</p>
+
+    <h2>Translations</h2>
+    <p>The site offers an automated Spanish translation for convenience. The English version controls if there is any difference in meaning. Para hablar con la oficina en español, llame al <a href={`tel:${SITE.phone}`}>{SITE.phone}</a>.</p>
+
+    <p>See also the <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms-of-use/">Terms of Use</a>.</p>
+  </SimplePage>
+</Base>
