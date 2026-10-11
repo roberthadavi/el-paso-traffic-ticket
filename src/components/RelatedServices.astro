@@ -1,6 +1,7 @@
 ---
 // "Related services" cards appended to legacy pages/blog posts so old content links into the core-30 journey.
-import { SERVICES, HUBS, hubOf } from '../data/services';
+import { SERVICES, HUBS } from '../data/services';
+import ServiceCards from './ServiceCards.astro';
 interface Props { slugs: string[]; title?: string; next?: { slug: string; label: string; blurb: string } }
 const { slugs, title = 'Related services', next } = Astro.props;
 const items = slugs.map((s) => SERVICES.find((x) => x.slug === s) || HUBS.find((h) => h.id === s)).filter(Boolean) as any[];
@@ -8,6 +9,5 @@ const nx = next ? (SERVICES.find((x) => x.slug === next.slug) || HUBS.find((h) =
 ---
 <div class="elementor elementor-832 ept-service"><div class="elementor-element e-flex e-con-boxed e-con e-parent ept-cards-wrap" data-e-type="container"><div class="e-con-inner">
   {nx && next && <a class="ept-next" href={nx.path}><span class="ept-next-kicker">{next.label}</span><span class="ept-next-title">{nx.name} →</span><span class="ept-next-blurb">{next.blurb}</span></a>}
-  <h2 class="elementor-heading-title elementor-size-default ept-h2">{title}</h2>
-  <div class="ept-cards">{items.map((r) => <a class="ept-card" href={r.path}><span class="ept-card-kicker">{r.hub ? hubOf(r.hub).short : 'Services'}</span><span class="ept-card-title">{r.name}</span>{r.price && <span class="ept-card-price">Flat fee {r.price}</span>}<span class="ept-card-more">READ MORE</span></a>)}</div>
+  <ServiceCards items={items} title={title} />
 </div></div></div>

@@ -17,10 +17,7 @@
 #callnowbutton.cnb-phone-icon { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M27.01355,23.48859l-1.753,1.75305a5.001,5.001,0,0,1-5.19928,1.18243c-1.97193-.69372-4.87335-2.36438-8.43848-5.9295S6.387,14.028,5.6933,12.05615A5.00078,5.00078,0,0,1,6.87573,6.85687L8.62878,5.10376a1,1,0,0,1,1.41431.00012l2.828,2.8288A1,1,0,0,1,12.871,9.3468L11.0647,11.153a1.0038,1.0038,0,0,0-.0821,1.32171,40.74278,40.74278,0,0,0,4.07624,4.58374,40.74143,40.74143,0,0,0,4.58374,4.07623,1.00379,1.00379,0,0,0,1.32171-.08209l1.80622-1.80627a1,1,0,0,1,1.41412-.00012l2.8288,2.828A1.00007,1.00007,0,0,1,27.01355,23.48859Z' fill='%23ffffff'/></svg>"); background-color: #dd3333; }
 /* Forms (replacing the WP-FSQM / JetFormBuilder forms) */
 .ept-form { font-family: "Open Sans", sans-serif; }
-.ept-form .ept-card { background: #fff; border: 1px solid #e6e6e6; border-radius: 6px; box-shadow: 0 2px 10px rgba(0,0,0,.06); overflow: hidden; max-width: 980px; margin: 0 auto; }
-.ept-form .ept-card-title { background: #f44336; color: #fff; font-size: 17px; padding: 12px 18px; margin: 0; font-weight: 500; }
-.ept-form .ept-card-body { padding: 22px 24px; }
-.ept-form .ept-q { margin-bottom: 18px; }
+.ept-form .ept-form .ept-form .ept-form .ept-q { margin-bottom: 18px; }
 .ept-form .ept-q > label, .ept-form .ept-q > legend { display: block; font-size: 15px; font-weight: 600; color: #333; margin-bottom: 6px; }
 .ept-form .ept-q .ept-hint { font-size: 13px; color: #777; margin: -2px 0 6px; }
 .ept-form .ept-req { color: #f44336; }
@@ -43,18 +40,14 @@
 .ept-form .ept-total { font-size: 18px; font-weight: 700; color: #222; margin: 6px 0 16px; }
 .ept-form .ept-hidden { display: none; }
 /* Contact page form — flat JetFormBuilder look from the old site */
-.ept-contact .ept-card { border: 0; box-shadow: none; background: transparent; border-radius: 0; }
-.ept-contact .ept-card-body { padding: 0; }
-.ept-contact .ept-q > label { position: absolute; left: -9999px; }
+.ept-contact .ept-contact .ept-contact .ept-q > label { position: absolute; left: -9999px; }
 .ept-contact input[type=text], .ept-contact input[type=tel], .ept-contact input[type=email], .ept-contact select, .ept-contact textarea { background: #f5f5f5; border: 1px solid #f0f0f0; border-radius: 0; padding: 12px 10px; font-size: 14px; color: #333; }
 .ept-contact textarea { min-height: 300px; }
 .ept-contact .ept-q { margin-bottom: 14px; }
 .ept-contact .ept-submit { background: #000; text-transform: none; font-weight: 700; border-radius: 0; }
 .ept-contact .ept-submit:hover { background: #222; }
 /* Checkout card title to match the old "Ticket and Warrant Checkout" header */
-.ept-fight .ept-card-title { background: #fff; color: #333; font-size: 18px; font-weight: 500; border-bottom: 1px solid #eee; padding: 16px 20px; }
-.ept-fight .ept-card-title .ept-badge { display: inline-block; background: #f44336; color: #fff; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .3px; padding: 3px 8px; border-radius: 2px; margin-left: 12px; vertical-align: middle; }
-/* Desktop nav: hover dropdown (Elementor normally positions this with JS) */
+.ept-fight .ept-fight /* Desktop nav: hover dropdown (Elementor normally positions this with JS) */
 .elementor-nav-menu--main .menu-item-has-children { position: relative; }
 .elementor-nav-menu--main .menu-item-has-children > .sub-menu { display: none; position: absolute; top: 100%; left: 0; min-width: 12em; z-index: 1000; }
 .elementor-nav-menu--main .menu-item-has-children:hover > .sub-menu, .elementor-nav-menu--main .menu-item-has-children:focus-within > .sub-menu { display: block; }
@@ -79,20 +72,8 @@
 .ept-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; background: repeating-linear-gradient(45deg, rgba(0,0,0,.04) 0 12px, rgba(0,0,0,0) 12px 24px); }
 .ept-ph-tag { font-family: Raleway, sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 2px; background: #f44336; color: #fff; padding: 5px 10px; border-radius: 3px; margin-bottom: 10px; }
 .ept-ph-label { font-family: "Open Sans", sans-serif; font-size: 16px; font-weight: 600; color: #333; max-width: 420px; line-height: 1.45; background: rgba(255,255,255,.85); padding: 8px 12px; border-radius: 4px; }
-.ept-cards-wrap { --padding-top: 50px !important; --padding-bottom: 50px !important; }
-.ept-cards-wrap > .e-con-inner { display: block !important; }
 .ept-h2 { font-family: Raleway, sans-serif; font-size: 30px; font-weight: 700; color: #f44336; margin: 0 0 22px; }
 .ept-h2-red { font-family: Raleway, sans-serif; font-size: 30px; font-weight: 700; color: #f44336; margin: 0 0 18px; }
-.ept-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-@media (max-width: 1024px) { .ept-cards { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 640px) { .ept-cards { grid-template-columns: 1fr; } }
-.ept-card { display: flex; flex-direction: column; gap: 8px; background: #fff; border-radius: 8px; box-shadow: 0 5px 10px rgba(0,0,0,.1); padding: 22px 22px 18px; text-decoration: none; color: #222; transition: transform .15s, box-shadow .15s; font-family: "Open Sans", sans-serif; }
-.ept-card:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(0,0,0,.14); }
-.ept-card-kicker { font-size: 12px; color: #777; }
-.ept-card-title { font-family: Raleway, sans-serif; font-size: 19px; font-weight: 600; color: #222; line-height: 1.3; }
-.ept-card-price { font-size: 13px; color: #f44336; font-weight: 600; }
-.ept-card-more { margin-top: auto; display: inline-block; text-align: center; border: 1px solid #222; padding: 8px 12px; font-size: 13px; font-weight: 600; letter-spacing: .3px; color: #222; }
-.ept-card:hover .ept-card-more { background: #222; color: #fff; }
 .ept-next { display: block; background: #212121; color: #fff; border-radius: 8px; padding: 26px 30px; margin: 0 0 40px; text-decoration: none; font-family: "Open Sans", sans-serif; }
 .ept-next:hover { background: #000; }
 .ept-next-kicker { display: block; font-family: Raleway, sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #f44336; margin-bottom: 6px; }
@@ -104,3 +85,36 @@
 .ept-service .elementor-16 .elementor-element-9b421ce { margin-top: 40px; }
 .ept-defend-link { color: inherit; text-decoration: none; }
 .ept-defend-link:hover { color: #f44336; text-decoration: underline; }
+
+/* ===== Modern category tiles ===== */
+.ept-sec-head { margin: 0 0 26px; }
+.ept-sec-head .ept-h2 { margin-bottom: 6px; font-size: 32px; letter-spacing: -.3px; }
+.ept-sub { margin: 0; font-family: "Open Sans", sans-serif; font-size: 16px; color: #666; max-width: 720px; }
+.ept-grid { display: grid; gap: 22px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ept-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 1100px) { .ept-grid, .ept-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .ept-grid, .ept-grid-4 { grid-template-columns: 1fr; } }
+.ept-tile { position: relative; display: flex; flex-direction: column; gap: 10px; min-height: 250px; padding: 28px 26px 24px; background: #fff; border: 1px solid #ececec; border-radius: 16px; box-shadow: 0 6px 18px rgba(20,20,20,.06); text-decoration: none; color: #1d1d1f; overflow: hidden; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; font-family: "Open Sans", sans-serif; }
+.ept-tile::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 5px; background: linear-gradient(90deg, #f44336, #b71c1c); opacity: 0; transition: opacity .2s; }
+.ept-tile:hover { transform: translateY(-5px); box-shadow: 0 18px 40px rgba(20,20,20,.14); border-color: #f5c3bf; }
+.ept-tile:hover::before { opacity: 1; }
+.ept-tile-icon { width: 56px; height: 56px; border-radius: 14px; display: grid; place-items: center; background: linear-gradient(135deg, #fff1f0, #ffd9d6); color: #d32f2f; font-size: 24px; margin-bottom: 4px; }
+.ept-tile:hover .ept-tile-icon { background: linear-gradient(135deg, #f44336, #b71c1c); color: #fff; }
+.ept-tile-kicker { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: #8a8a8a; }
+.ept-tile-price { font-weight: 700; color: #d32f2f; letter-spacing: 0; text-transform: none; font-size: 13px; background: #fff1f0; padding: 3px 9px; border-radius: 999px; }
+.ept-tile-title { font-family: Raleway, sans-serif; font-weight: 700; font-size: 21px; line-height: 1.25; color: #1d1d1f; }
+.ept-tile-blurb { font-size: 14.5px; line-height: 1.55; color: #555; }
+.ept-tile-more { margin-top: auto; padding-top: 8px; font-size: 14px; font-weight: 700; color: #d32f2f; display: inline-flex; align-items: center; gap: 8px; }
+.ept-tile:hover .ept-tile-more i { transform: translateX(4px); }
+.ept-tile-more i { transition: transform .2s; font-size: 12px; }
+/* Modernize the rest of the service-page chrome */
+.ept-summary { border-left: 0; border-radius: 16px; padding: 26px 30px; box-shadow: 0 12px 30px rgba(20,20,20,.08); background: linear-gradient(180deg, #fff, #fff8f7); position: relative; }
+.ept-summary::before { content: ""; position: absolute; left: 0; top: 18px; bottom: 18px; width: 5px; border-radius: 0 6px 6px 0; background: linear-gradient(180deg, #f44336, #b71c1c); }
+.ept-next { border-radius: 16px; background: linear-gradient(135deg, #1b1b1b, #3a0d0d); box-shadow: 0 14px 34px rgba(0,0,0,.25); padding: 30px 34px; }
+.ept-next-title { font-size: 28px; }
+.ept-service .e-n-accordion-item { border-radius: 10px !important; margin-bottom: 8px; overflow: hidden; }
+.ept-service .ept-photo { border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,.08); }
+.ept-service .ept-crumbs ol { justify-content: center; }
+.ept-service .ept-next, .ept-service a.ept-next { background-color: #1b1b1b !important; background-image: linear-gradient(135deg, #1b1b1b, #3a0d0d) !important; }
+.ept-cards-wrap { --padding-top: 50px !important; --padding-bottom: 50px !important; }
+.ept-cards-wrap > .e-con-inner { display: block !important; }

@@ -6,6 +6,7 @@ import { SITE } from '../data/site';
 import { HUBS, SERVICES, hubOf, type HubId } from '../data/services';
 import { resolve, type ServiceContent } from '../lib/services';
 import Placeholder from './Placeholder.astro';
+import ServiceCards from './ServiceCards.astro';
 
 interface Props { content: ServiceContent; path: string; hub: HubId; isHub?: boolean; price?: string; slug: string; gbp?: string }
 const { content: c, path, hub, isHub = false, price, slug, gbp } = Astro.props;
@@ -85,10 +86,7 @@ const img = (i: number) => `/images/placeholders/${slug}-${i + 1}.svg`;
   <!-- HUB: all services in this hub -->
   {isHub && siblings.length > 0 && (
     <div class="elementor-element e-flex e-con-boxed e-con e-parent ept-cards-wrap" data-e-type="container">
-      <div class="e-con-inner">
-        <h2 class="elementor-heading-title elementor-size-default ept-h2">{H.name} — all services</h2>
-        <div class="ept-cards">{siblings.map((s) => <a class="ept-card" href={s.path}><span class="ept-card-kicker">{H.short}</span><span class="ept-card-title">{s.name}</span>{s.price && <span class="ept-card-price">Flat fee {s.price}</span>}<span class="ept-card-more">READ MORE</span></a>)}</div>
-      </div>
+      <div class="e-con-inner"><ServiceCards items={siblings} title={`${H.name}: every service`} subtitle="Pick the page that matches your situation. Each one explains the law, the court, the fee and what to do next." /></div>
     </div>
   )}
 
@@ -136,10 +134,7 @@ const img = (i: number) => `/images/placeholders/${slug}-${i + 1}.svg`;
           <span class="ept-next-blurb">{c.next.blurb}</span>
         </a>
       )}
-      {related.length > 0 && <>
-        <h2 class="elementor-heading-title elementor-size-default ept-h2">Related services</h2>
-        <div class="ept-cards">{related.map((r) => <a class="ept-card" href={r.href}><span class="ept-card-kicker">{(SERVICES.find((s) => s.path === r.href) ? hubOf(SERVICES.find((s) => s.path === r.href)!.hub).short : 'Services')}</span><span class="ept-card-title">{r.name}</span><span class="ept-card-more">READ MORE</span></a>)}</div>
-      </>}
+      {related.length > 0 && <ServiceCards items={related.map((r) => SERVICES.find((s) => s.path === r.href) || HUBS.find((h) => h.path === r.href))} title="Related services" />}
       <p class="ept-author">Written by <a href="/contact-us/">Robert Navar</a>, attorney, {SITE.legalName.replace(' – Attorney Robert Navar', '')}. Licensed in Texas. This page is general information for El Paso County drivers, not legal advice about your specific case. {gbp && <span class="ept-gbp">Google service: {gbp}</span>}</p>
     </div>
   </div>

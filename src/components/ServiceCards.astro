@@ -1,0 +1,19 @@
+---
+// Modern service/hub cards: icon, kicker, title, blurb, price, arrow. Used on hubs, related blocks and the services overview.
+import { SERVICES, HUBS, hubOf } from '../data/services';
+interface Props { slugs?: string[]; items?: any[]; title?: string; subtitle?: string; columns?: number }
+const { slugs = [], items, title, subtitle, columns = 3 } = Astro.props;
+const list = items || slugs.map((s) => SERVICES.find((x) => x.slug === s) || HUBS.find((h) => h.id === s)).filter(Boolean);
+---
+{title && <div class="ept-sec-head"><h2 class="ept-h2">{title}</h2>{subtitle && <p class="ept-sub">{subtitle}</p>}</div>}
+<div class={`ept-grid ept-grid-${columns}`}>
+  {list.map((r: any) => (
+    <a class="ept-tile" href={r.path}>
+      <span class="ept-tile-icon"><i class={`fas ${r.icon}`} aria-hidden="true"></i></span>
+      <span class="ept-tile-kicker">{r.hub ? hubOf(r.hub).short : 'Practice area'}{r.price && <b class="ept-tile-price">Flat fee {r.price}</b>}</span>
+      <span class="ept-tile-title">{r.name}</span>
+      {r.blurb && <span class="ept-tile-blurb">{r.blurb}</span>}
+      <span class="ept-tile-more">Learn more <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+    </a>
+  ))}
+</div>
