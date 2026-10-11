@@ -74,22 +74,46 @@ function cleanLead(raw: any, prev: Lead): Lead {
   return out;
 }
 
+const EMAIL_RE = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i;
+const PHONE_RE = /(?:\+?1[\s.-]?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}\b/;
+
 async function extractLead(env: Env, messages: Msg[], prev: Lead): Promise<Lead> {
-  const userText = messages.filter((m) => m.role === 'user').map((m) => m.content).join('\n');
-  // Cheap pre-check: only call the model if the visitor has typed something that could be contact info or a name.
-  if (!/@|\d{3}[\s.-]?\d{3}[\s.-]?\d{4}|\b(my name|i am|i'm|me llamo|soy|this is|call me|it's)\b/i.test(userText)) return prev;
+  const lead: Lead = { ...prev };
+  const users = messages.filter((m) => m.role === 'user');
+  const userText = users.map((m) => m.content).join('\n');
+  // Deterministic: email and phone straight from what the visitor typed.
+  if (!lead.email) { const m = userText.match(EMAIL_RE); if (m) lead.email = m[0].toLowerCase(); }
+  if (!lead.phone) { const m = userText.match(PHONE_RE); if (m && digits(m[0]).length >= 10) lead.phone = m[0].trim(); }
+  if (lead.name && lead.matter) return lead;
+
+  // Name (and a one-line summary of the matter): small model with a JSON schema, only when it's plausibly there.
+  const last = users[users.length - 1]?.content ?? '';
+  const prevAssistant = [...messages].reverse().find((m) => m.role === 'assistant')?.content ?? '';
+  const askedForName = /\b(name|nombre|llamas|who am i speaking)\b/i.test(prevAssistant);
+  const looksLikeName = askedForName && /^[a-záéíóúñü' .-]{2,40}$/i.test(last.trim()) && last.trim().split(/\s+/).length <= 4;
+  const hint = /\b(my name|i am|i'm|me llamo|soy|this is|call me|it's|name is)\b/i.test(userText);
+  if (!lead.name && looksLikeName) lead.name = last.trim().replace(/\b\w/g, (c) => c.toUpperCase());
+  if (!lead.name && !hint && !lead.phone && !lead.email) return lead;
   try {
     const r = await env.AI!.run(EXTRACT_MODEL, {
       messages: [{ role: 'system', content: EXTRACT_SYSTEM }, { role: 'user', content: messages.slice(-12).map((m) => `${m.role === 'user' ? 'VISITOR' : 'ASSISTANT'}: ${m.content}`).join('\n') }],
       max_tokens: 160, temperature: 0,
+      response_format: { type: 'json_schema', json_schema: { type: 'object', properties: { name: { type: ['string', 'null'] }, email: { type: ['string', 'null'] }, phone: { type: ['string', 'null'] }, matter: { type: ['string', 'null'] } }, required: ['name', 'email', 'phone', 'matter'] } },
     });
-    const txt: string = typeof r === 'string' ? r : r?.response ?? '';
+    const txt: string = typeof r === 'string' ? r : typeof r?.response === 'string' ? r.response : JSON.stringify(r?.response ?? '');
+    console.log('lead extract raw', txt.slice(0, 300));
     const m = txt.match(/\{[\s\S]*\}/);
-    return m ? cleanLead(JSON.parse(m[0]), prev) : prev;
+    if (m) {
+      const got = cleanLead(JSON.parse(m[0]), {});
+      if (!lead.name && got.name) lead.name = got.name;
+      if (!lead.matter && got.matter) lead.matter = got.matter;
+      if (!lead.email && got.email) lead.email = got.email;
+      if (!lead.phone && got.phone) lead.phone = got.phone;
+    }
   } catch (e) {
     console.error('lead extract failed', (e as Error).message);
-    return prev;
   }
+  return lead;
 }
 
 function transcriptText(messages: Msg[]) {
