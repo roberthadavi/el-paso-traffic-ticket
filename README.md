@@ -9,3 +9,4 @@ Pixel-faithful port of the WordPress/Elementor site (Oct 2026) to a static Astro
 - Worker secrets: `RESEND_API_KEY`, optional `STRIPE_SECRET_KEY`; vars `LEAD_TO_EMAIL`, `LEAD_FROM_EMAIL`.
 
 Build: `npm run build` · Preview: `npm run preview` · Deploy: `npm run deploy` (wrangler).
+
