@@ -4,8 +4,9 @@
   "main": "worker/index.ts",
   "compatibility_date": "2026-08-01",
   "assets": { "directory": "./dist", "binding": "ASSETS", "not_found_handling": "404-page", "html_handling": "auto-trailing-slash", "run_worker_first": true },
+  "send_email": [{ "name": "EMAIL" }],
   "observability": { "enabled": true, "logs": { "enabled": true, "invocation_logs": true } },
   "workers_dev": true,
   "preview_urls": true,
-  "vars": { "LEAD_TO_EMAIL": "david@trafficfirm.org" }
+  "vars": { "LEAD_TO_EMAIL": "david@trafficfirm.org", "LEAD_FROM_EMAIL": "noreply@elpasotrafficticketfirm.com", "LEAD_FROM_NAME": "El Paso Traffic Ticket Firm" }
 }

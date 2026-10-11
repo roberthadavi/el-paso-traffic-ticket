@@ -1,35 +1,39 @@
 // Cloudflare Worker for elpasotrafficticket.com
 // - serves the static Astro build (ASSETS binding, run_worker_first = true so redirects/headers always run)
-// - POST /api/lookup, /api/contact → email the lead via Resend
+// - POST /api/lookup, /api/contact → email the lead via Cloudflare Email Sending (send_email binding "EMAIL")
 // - POST /api/fight → email the hire request; if STRIPE_SECRET_KEY is set, create a Stripe Checkout session and return its URL
 import { COURTS, WARRANT_FIRST, WARRANT_ADDITIONAL, MAX_TICKETS, MAX_EXTRA_CITATIONS, MAX_WARRANTS } from '../src/data/pricing';
 
+interface SendEmailBinding { send(msg: { to: string | string[]; from: string | { email: string; name?: string }; subject: string; html?: string; text?: string }): Promise<{ messageId?: string }> }
 export interface Env {
   ASSETS: { fetch: (req: Request) => Promise<Response> };
-  RESEND_API_KEY?: string;
+  EMAIL: SendEmailBinding;        // Cloudflare Email Sending binding
   LEAD_TO_EMAIL?: string;
-  LEAD_FROM_EMAIL?: string;
+  LEAD_FROM_EMAIL?: string;       // must be on a domain onboarded in Email Sending
+  LEAD_FROM_NAME?: string;
   STRIPE_SECRET_KEY?: string;
 }
 
 const CANONICAL_HOST = 'elpasotrafficticket.com';
 const DEFAULT_TO = 'help@elpasotrafficticket.com';
-const DEFAULT_FROM = 'El Paso Traffic Ticket Firm <noreply@elpasotrafficticket.com>';
+const DEFAULT_FROM = 'noreply@elpasotrafficticketfirm.com';
 
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
 const json = (obj: unknown, status = 200) => new Response(JSON.stringify(obj), { status, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } });
 
 async function sendEmail(env: Env, subject: string, rows: [string, string][], message?: string, replyTo?: string) {
-  if (!env.RESEND_API_KEY) { console.error('RESEND_API_KEY missing'); return false; }
+  if (!env.EMAIL) { console.error('EMAIL binding missing'); return false; }
+  if (replyTo) rows = [['Reply to', replyTo], ...rows];
   const html = `<div style="font-family:Arial,sans-serif;font-size:15px;color:#111"><h2 style="margin:0 0 12px">${esc(subject)}</h2><table cellpadding="6" style="border-collapse:collapse">${rows.map(([k, v]) => `<tr><td style="color:#666;padding-right:14px;vertical-align:top"><b>${esc(k)}</b></td><td>${esc(v)}</td></tr>`).join('')}</table>${message ? `<h3 style="margin:18px 0 6px">Message</h3><p style="white-space:pre-wrap;background:#f6f6f6;padding:12px;border-radius:6px">${esc(message)}</p>` : ''}</div>`;
   const text = rows.map(([k, v]) => `${k}: ${v}`).join('\n') + (message ? `\n\nMessage:\n${message}` : '');
-  const r = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from: env.LEAD_FROM_EMAIL || DEFAULT_FROM, to: [env.LEAD_TO_EMAIL || DEFAULT_TO], reply_to: replyTo || undefined, subject, html, text }),
-  });
-  if (!r.ok) console.error('Resend error', r.status, await r.text());
-  return r.ok;
+  try {
+    const r = await env.EMAIL.send({ to: env.LEAD_TO_EMAIL || DEFAULT_TO, from: { email: env.LEAD_FROM_EMAIL || DEFAULT_FROM, name: env.LEAD_FROM_NAME || 'El Paso Traffic Ticket Firm' }, subject, html, text });
+    console.log('email sent', r?.messageId, subject);
+    return true;
+  } catch (e) {
+    console.error('Email send failed', (e as Error).message, subject);
+    return false;
+  }
 }
 
 async function readForm(req: Request) {
