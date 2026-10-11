@@ -14,7 +14,10 @@
 //   "faqs": [{ "q": "...", "a": "<html>" }],                   // 4–6
 //   "related": ["slug", "slug", "slug"],                       // 3–4 sibling/cross-hub services
 //   "next": { "slug": "...", "label": "Next step: ...", "blurb": "one sentence" },
-//   "cta": "fight" | "lookup" | "consult"
+//   "cta": "fight" | "lookup" | "consult",
+//   "summaryHeading": "Got a speeding ticket in El Paso? Here's what happens next",   // replaces the generic kicker
+//   "published": "2026-10-06", "updated": "2026-10-11",
+//   "sources": [{ "name": "El Paso Municipal Court", "url": "https://..." }]      // court pages: official sources cited on the page
 // }
 import { SERVICES, HUBS, type ServiceMeta, type Hub } from '../data/services';
 
@@ -23,6 +26,7 @@ export interface ServiceContent {
   title: string; metaDescription: string; h1: string; intro: string; summary: string[];
   sections: Section[]; faqs: { q: string; a: string }[]; related: string[];
   next?: { slug: string; label: string; blurb: string }; cta?: 'fight' | 'lookup' | 'consult';
+  summaryHeading?: string; published?: string; updated?: string; sources?: { name: string; url: string }[];
 }
 
 const files = import.meta.glob<{ default: ServiceContent }>('../content/services/*.json', { eager: true });

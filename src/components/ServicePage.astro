@@ -17,6 +17,7 @@ const related = (c.related || []).map(resolve).filter(Boolean) as { name: string
 const next = c.next ? resolve(c.next.slug) : null;
 const siblings = isHub ? SERVICES.filter((s) => s.hub === hub && s.slug) : [];
 const crumbs = [{ name: 'Home', href: '/' }, { name: H.name, href: H.path }, ...(isHub ? [] : [{ name: c.h1, href: path }])];
+const fmt = (d: string) => new Date(d + 'T12:00:00Z').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 const img = (i: number) => `/images/placeholders/${slug}-${i + 1}.svg`;
 ---
 <div class="elementor elementor-832 ept-service" data-elementor-type="wp-page">
@@ -47,9 +48,9 @@ const img = (i: number) => `/images/placeholders/${slug}-${i + 1}.svg`;
   <div class="elementor-element elementor-element-feb9efa e-flex e-con-boxed e-con e-parent ept-summary-wrap" data-e-type="container" data-element_type="container">
     <div class="e-con-inner">
       <div class="ept-summary">
-        <p class="ept-summary-kicker">The short answer</p>
+        <p class="ept-summary-kicker">{c.summaryHeading || (isHub ? "Start here" : "What you need to know")}</p>
         <ul>{c.summary.map((s) => <li set:html={s} />)}</ul>
-        {price && <p class="ept-price">Flat fee for this court: <strong>{price}</strong> per ticket <span>— no court appearance required for most cases. <a href="/fight-my-ticket/">Hire online in 2 minutes →</a></span></p>}
+        {price && <p class="ept-price">Flat fee for this court: <strong>{price}</strong> per ticket <span>— in many traffic cases the attorney appears for you. <a href="/fight-my-ticket/">Hire online in 2 minutes →</a></span></p>}
       </div>
     </div>
   </div>
@@ -135,7 +136,7 @@ const img = (i: number) => `/images/placeholders/${slug}-${i + 1}.svg`;
         </a>
       )}
       {related.length > 0 && <ServiceCards items={related.map((r) => SERVICES.find((s) => s.path === r.href) || HUBS.find((h) => h.path === r.href))} title="Related services" />}
-      <p class="ept-author">Written by <a href="/contact-us/">Robert Navar</a>, attorney, {SITE.legalName.replace(' – Attorney Robert Navar', '')}. Licensed in Texas. This page is general information for El Paso County drivers, not legal advice about your specific case. {gbp && <span class="ept-gbp">Google service: {gbp}</span>}</p>
+      <p class="ept-author">Written and reviewed by <a href="/attorney/robert-navar/">Attorney Robert A. Navar</a>, El Paso Traffic Ticket Firm. Licensed in Texas.{c.published && <span class="ept-dates"> Published {fmt(c.published)}{c.updated && c.updated !== c.published && <> · Last reviewed {fmt(c.updated)}</>}.</span>} This page is general information for El Paso County drivers, not legal advice about your specific case, and contacting the office does not by itself create an attorney-client relationship.{c.sources?.length ? <span class="ept-sources"> Sources: {c.sources.map((x, i) => <><a href={x.url} rel="noopener nofollow" target="_blank">{x.name}</a>{i < c.sources!.length - 1 ? ', ' : ''}</>)}.</span> : null} {gbp && <span class="ept-gbp">Google service: {gbp}</span>}</p>
     </div>
   </div>
 </div>
