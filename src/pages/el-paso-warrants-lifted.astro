@@ -1,0 +1,10 @@
+---
+import Base from '../layouts/Base.astro';
+import LegacyContent from '../components/LegacyContent.astro';
+import html from '../legacy/pages/el-paso-warrants-lifted.html?raw';
+const title = 'El Paso Warrants Lifted - Elpaso Traffic Ticket';
+const description = 'El Paso Municipal Court is renowned for their ability to issue active arrest warrants almost immediately after an appearance date ...';
+---
+<Base prefix="single_blog_post" bodyClass="post-template-default single single-post single-format-standard jet-engine-optimized-dom elementor-default elementor-kit-5 ct-elementor-default-template" title={title} description={description} path="/el-paso-warrants-lifted/" pageType="Article">
+  <LegacyContent html={html} />
+</Base>

@@ -1,0 +1,24 @@
+---
+// Contact form — replaces the JetFormBuilder form on /contact-us/
+const types = ['Red Light Ticket Citation (Non-camera)', 'Financial Responsibility / No Insurance Ticket', 'CDL License (Commercial Drivers)', 'Texas State Trooper Violations', 'Stop Sign Tickets', 'Speeding in School Zone Tickets', 'Code A Restrictions / Driving Without Corrective Lenses', 'All Moving Violations', 'Trucking Violations', 'Ordinance Violations', 'All Class C Misdemeanors', 'Warrant', 'Occupational License', 'Other'];
+---
+<div class="ept-form ept-contact">
+  <form class="ept-card" method="post" action="/api/contact" novalidate data-ept-form>
+    <div class="ept-card-body">
+      <input type="hidden" name="form" value="contact" />
+      <input type="hidden" name="page" value={Astro.url.pathname} />
+      <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+      <div class="ept-q"><label for="ct-name">Full Name <span class="ept-req">*</span></label><input id="ct-name" type="text" name="name" placeholder="Full Name" required autocomplete="name" /></div>
+      <div class="ept-row">
+        <div class="ept-q"><label for="ct-phone">Phone <span class="ept-req">*</span></label><input id="ct-phone" type="tel" name="phone" placeholder="Phone" required autocomplete="tel" /></div>
+        <div class="ept-q"><label for="ct-email">Email <span class="ept-req">*</span></label><input id="ct-email" type="email" name="email" placeholder="Email" required autocomplete="email" /></div>
+      </div>
+      <div class="ept-q"><label for="ct-type">Ticket Type</label>
+        <select id="ct-type" name="matter"><option value="">Ticket Type</option>{types.map((t) => <option value={t}>{t}</option>)}</select>
+      </div>
+      <div class="ept-q"><label for="ct-msg">What would you like to discuss on your call?</label><textarea id="ct-msg" name="message" rows="5" placeholder="What would you like to discuss on your call?"></textarea></div>
+      <p class="ept-status" role="status" data-ok="Thank you — your message was sent. We'll get back to you shortly." data-err="Something went wrong. Please call 915-503-1600."></p>
+    </div>
+    <button class="ept-submit" type="submit" data-label="Send" data-sending="Sending…">Send</button>
+  </form>
+</div>

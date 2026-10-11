@@ -1,0 +1,10 @@
+---
+import Base from '../layouts/Base.astro';
+import LegacyContent from '../components/LegacyContent.astro';
+import html from '../legacy/pages/defensive-driving-in-el-paso-texas.html?raw';
+const title = 'Defensive Driving In El Paso, Texas - Elpaso Traffic Ticket';
+const description = 'Defensive driving classes are one way for you to avoid having a traffic conviction on your license. In many cases, taking a defensive ...';
+---
+<Base prefix="single_blog_post" bodyClass="post-template-default single single-post single-format-standard jet-engine-optimized-dom elementor-default elementor-kit-5 ct-elementor-default-template" title={title} description={description} path="/defensive-driving-in-el-paso-texas/" pageType="Article">
+  <LegacyContent html={html} />
+</Base>

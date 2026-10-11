@@ -1,0 +1,14 @@
+{
+  "name": "el-paso-traffic-ticket",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "deploy": "astro build && wrangler deploy"
+  },
+  "dependencies": { "@astrojs/sitemap": "^3.7.4", "astro": "^7.2.10" },
+  "devDependencies": { "wrangler": "^4.128.0" }
+}

@@ -1,0 +1,13 @@
+---
+// Renders a ported Elementor page fragment, swapping the old WordPress forms for our components.
+import LookupForm from './LookupForm.astro';
+import ContactForm from './ContactForm.astro';
+import FightForm from './FightForm.astro';
+interface Props { html: string; fight?: boolean }
+const { html, fight = false } = Astro.props;
+const parts = html.split(/<!--FORM:(\w+)-->/);
+// parts = [html, formName, html, formName, html ...]
+---
+{parts.map((p, i) => i % 2 === 0
+  ? <Fragment set:html={p} />
+  : (p === 'contact' ? <ContactForm /> : (p === 'fight' || fight ? <FightForm /> : <LookupForm />)))}

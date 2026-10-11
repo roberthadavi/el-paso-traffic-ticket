@@ -1,0 +1,10 @@
+---
+import Base from '../layouts/Base.astro';
+import LegacyContent from '../components/LegacyContent.astro';
+import html from '../legacy/pages/fight-my-ticket.html?raw';
+const title = 'Fight My Ticket! - Elpaso Traffic Ticket';
+const description = '';
+---
+<Base prefix="single_page" bodyClass="page-template-default page jet-engine-optimized-dom elementor-default elementor-kit-5 ct-elementor-default-template" title={title} description={description} path="/fight-my-ticket/">
+  <LegacyContent html={html} fight />
+</Base>

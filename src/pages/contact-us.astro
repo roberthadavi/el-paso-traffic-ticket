@@ -1,0 +1,10 @@
+---
+import Base from '../layouts/Base.astro';
+import LegacyContent from '../components/LegacyContent.astro';
+import html from '../legacy/pages/contact-us.html?raw';
+const title = 'Contact Us - Elpaso Traffic Ticket';
+const description = 'Robert Navar is an experienced El Paso, attorney dedicated to protecting clients from the lasting consequences of traffic and speeding tickets. For over a';
+---
+<Base prefix="single_page" bodyClass="page-template page-template-elementor_header_footer page jet-engine-optimized-dom elementor-default elementor-template-full-width elementor-kit-5 elementor-page" title={title} description={description} path="/contact-us/">
+  <LegacyContent html={html} />
+</Base>

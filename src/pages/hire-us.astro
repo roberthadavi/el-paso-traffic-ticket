@@ -1,0 +1,10 @@
+---
+import Base from '../layouts/Base.astro';
+import LegacyContent from '../components/LegacyContent.astro';
+import html from '../legacy/pages/hire-us.html?raw';
+const title = 'Hire Us - Elpaso Traffic Ticket';
+const description = 'Hire Us';
+---
+<Base prefix="single_page" bodyClass="page-template page-template-elementor_header_footer page jet-engine-optimized-dom elementor-default elementor-template-full-width elementor-kit-5 elementor-page" title={title} description={description} path="/hire-us/">
+  <LegacyContent html={html} fight />
+</Base>

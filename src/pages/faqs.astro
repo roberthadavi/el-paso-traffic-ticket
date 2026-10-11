@@ -1,0 +1,10 @@
+---
+import Base from '../layouts/Base.astro';
+import LegacyContent from '../components/LegacyContent.astro';
+import html from '../legacy/pages/faqs.html?raw';
+const title = 'FAQ\'s - Elpaso Traffic Ticket';
+const description = 'Your best option is to hire an experienced traffic ticket defense attorney who can help you beat your speeding violation, which will allow you to avoid the';
+---
+<Base prefix="single_page" bodyClass="page-template page-template-elementor_header_footer page jet-engine-optimized-dom elementor-default elementor-template-full-width elementor-kit-5 elementor-page" title={title} description={description} path="/faqs/" pageType="FAQPage">
+  <LegacyContent html={html} />
+</Base>

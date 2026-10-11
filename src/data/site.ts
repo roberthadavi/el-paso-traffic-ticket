@@ -1,0 +1,21 @@
+export const SITE = {
+  name: 'El Paso Traffic Ticket Firm',
+  legalName: 'El Paso Traffic Ticket Firm – Attorney Robert Navar',
+  attorney: 'Robert Navar',
+  url: 'https://elpasotrafficticket.com',
+  phone: '915-503-1600',
+  phoneE164: '+19155031600',
+  email: 'help@elpasotrafficticket.com',
+  address: { street: '11860 Vista Del Sol Dr. #119', city: 'El Paso', state: 'TX', zip: '79936' },
+  geo: { lat: 31.7454033, lng: -106.2880743 },
+  logo: '/images/Group-128-1.png',
+  ogImage: '/images/Third-Section-Second-Image.png',
+  sameAs: [
+    'https://www.facebook.com/trafficfirmelpaso/',
+    'https://www.instagram.com/trafficticketlawyers/',
+    'https://www.linkedin.com/in/elpasotrafficticketfirm/',
+    'https://twitter.com/trafficlawyerep',
+  ],
+  areaServed: ['El Paso', 'Horizon City', 'Socorro', 'San Elizario', 'Clint', 'Anthony', 'Canutillo', 'Vinton', 'Fort Bliss'],
+  youtubeHowTo: 'https://youtu.be/ipvERko9za8',
+};

@@ -1,0 +1,165 @@
+---
+// "Fight My Ticket" — online hire + checkout. Replaces WP-FSQM form #6.
+// Pricing lives in src/data/pricing.ts and is echoed to the client as JSON for the live total;
+// the Worker recomputes the total server-side before creating a Stripe Checkout session.
+import { COURTS, WARRANT_FIRST, WARRANT_ADDITIONAL, MAX_TICKETS, MAX_EXTRA_CITATIONS, MAX_WARRANTS } from '../data/pricing';
+const pricing = { courts: COURTS, warrantFirst: WARRANT_FIRST, warrantAdditional: WARRANT_ADDITIONAL, maxTickets: MAX_TICKETS, maxExtra: MAX_EXTRA_CITATIONS, maxWarrants: MAX_WARRANTS };
+const sources = ['Google', 'Facebook', 'Instagram', 'Mail', 'Referral', 'Outside Ads'];
+---
+<div class="ept-form ept-fight" id="fight-form-root">
+  <form class="ept-card" method="post" action="/api/fight" novalidate data-ept-form data-fight>
+    <h3 class="ept-card-title">🗂 Ticket and Warrant Checkout <span class="ept-badge">Please fill in as much as you can. Thank you for the opportunity to help defend your traffic tickets</span></h3>
+    <div class="ept-card-body">
+      <input type="hidden" name="form" value="fight" />
+      <input type="hidden" name="page" value={Astro.url.pathname} />
+      <input type="hidden" name="tickets_json" value="" data-tickets-json />
+      <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+
+      <div data-tickets></div>
+      <p><button type="button" class="elementor-button elementor-size-sm ept-add-ticket" data-add-ticket>+ I have another ticket</button></p>
+
+      <fieldset class="ept-q">
+        <legend>Do you have warrants? <span class="ept-req">*</span></legend>
+        <div class="ept-radios">
+          <label><input type="radio" name="has_warrants" value="yes" required /> Yes</label>
+          <label><input type="radio" name="has_warrants" value="no" /> No</label>
+        </div>
+      </fieldset>
+      <div class="ept-q ept-hidden" data-warrants-q>
+        <label for="ft-warrants">How many warrants? ${WARRANT_FIRST} for the first and ${WARRANT_ADDITIONAL} for each additional. <span class="ept-req">*</span></label>
+        <p class="ept-hint">Up to {MAX_WARRANTS}</p>
+        <input id="ft-warrants" type="number" name="warrants" min="1" max={MAX_WARRANTS} value="1" />
+      </div>
+
+      <fieldset class="ept-q">
+        <legend>Do you have a CDL (Commercial Drivers License)? <span class="ept-req">*</span></legend>
+        <div class="ept-radios">
+          <label><input type="radio" name="cdl" value="no" required /> No</label>
+          <label><input type="radio" name="cdl" value="yes" /> Yes</label>
+        </div>
+      </fieldset>
+
+      <h3 class="ept-section">Your Information</h3>
+      <div class="ept-row">
+        <div class="ept-q"><label for="ft-first">First Name <span class="ept-req">*</span></label><input id="ft-first" type="text" name="first_name" required autocomplete="given-name" /></div>
+        <div class="ept-q"><label for="ft-last">Last Name <span class="ept-req">*</span></label><input id="ft-last" type="text" name="last_name" required autocomplete="family-name" /></div>
+      </div>
+      <div class="ept-row">
+        <div class="ept-q"><label for="ft-dob">Date of Birth <span class="ept-req">*</span></label><input id="ft-dob" type="text" name="dob" placeholder="MM/DD/YYYY" inputmode="numeric" required autocomplete="bday" /></div>
+        <div class="ept-q"><label for="ft-dl">Driver's License #</label><input id="ft-dl" type="text" name="dl" placeholder="DL#" /></div>
+      </div>
+      <div class="ept-row">
+        <div class="ept-q"><label for="ft-email">Email Address <span class="ept-req">*</span></label><input id="ft-email" type="email" name="email" required autocomplete="email" /></div>
+        <div class="ept-q"><label for="ft-phone">Phone <span class="ept-req">*</span></label><input id="ft-phone" type="tel" name="phone" required autocomplete="tel" /></div>
+      </div>
+      <fieldset class="ept-q">
+        <legend>Where did you hear about us?</legend>
+        <div class="ept-radios">{sources.map((s) => <label><input type="radio" name="source" value={s} /> {s}</label>)}</div>
+      </fieldset>
+      <div class="ept-q"><label for="ft-coupon">Enter Discount Coupon</label><input id="ft-coupon" type="text" name="coupon" placeholder="enter your code" autocomplete="off" /></div>
+
+      <h3 class="ept-section">Secure Checkout</h3>
+      <p class="ept-total">Total: <span data-total>$0</span></p>
+      <p class="ept-hint">Payment is processed securely by Stripe on the next screen. We do not store any card information.</p>
+      <div class="ept-q">
+        <label><input type="checkbox" name="agree" value="yes" required /> By submitting this form you hereby agree to our terms and conditions.</label>
+      </div>
+      <p class="ept-status" role="status" data-ok="Thank you — we received your request. We'll contact you shortly to complete payment and start on your case." data-err="Something went wrong. Please call 915-503-1600 and we'll take care of you."></p>
+    </div>
+    <button class="ept-submit" type="submit" data-label="Proceed to Secure Checkout" data-sending="Please wait…">Proceed to Secure Checkout</button>
+  </form>
+  <template data-ticket-template>
+    <fieldset class="ept-ticket" data-ticket>
+      <h3 class="ept-section" data-ticket-title>Your traffic ticket</h3>
+      <div class="ept-q">
+        <legend>What type of ticket is it? <span class="ept-req">*</span></legend>
+        <div class="ept-radios" data-courts></div>
+      </div>
+      <div class="ept-q">
+        <label>Ticket Number <span class="ept-req">*</span></label>
+        <p class="ept-hint">Please enter the ticket number (example: 19543251)</p>
+        <input type="text" data-ticket-number required />
+      </div>
+      <div class="ept-q">
+        <label>How many additional citations did you receive with this ticket?</label>
+        <p class="ept-hint" data-extra-hint>Up to {MAX_EXTRA_CITATIONS} citations only.</p>
+        <input type="number" min="0" max={MAX_EXTRA_CITATIONS} value="0" data-extra />
+      </div>
+      <p><button type="button" class="ept-link" data-remove-ticket>Remove this ticket</button></p>
+    </fieldset>
+  </template>
+  <script type="application/json" data-pricing set:html={JSON.stringify(pricing)} />
+</div>
+<style>
+  .ept-section { font-family: Raleway, sans-serif; font-size: 20px; font-weight: 700; color: #222; margin: 22px 0 12px; }
+  .ept-ticket { border: 1px solid #eee !important; border-radius: 6px; padding: 14px 16px !important; margin: 0 0 16px !important; background: #fafafa; }
+  .ept-ticket .ept-section { margin-top: 0; font-size: 17px; }
+  .ept-add-ticket { background: #212121; color: #fff; border: 0; border-radius: 3px; padding: 10px 18px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
+  .ept-link { background: none; border: 0; color: #c62828; font: inherit; font-size: 13px; cursor: pointer; padding: 0; text-decoration: underline; }
+</style>
+<script>
+  const root = document.getElementById('fight-form-root');
+  if (root) {
+    const P = JSON.parse(root.querySelector('[data-pricing]')!.textContent!);
+    const form = root.querySelector<HTMLFormElement>('form[data-fight]')!;
+    const list = root.querySelector<HTMLElement>('[data-tickets]')!;
+    const tpl = root.querySelector<HTMLTemplateElement>('[data-ticket-template]')!;
+    const totalEl = root.querySelector<HTMLElement>('[data-total]')!;
+    const json = root.querySelector<HTMLInputElement>('[data-tickets-json]')!;
+    const ord = ['1st', '2nd', '3rd', '4th', '5th'];
+
+    const addTicket = () => {
+      const n = list.querySelectorAll('[data-ticket]').length;
+      if (n >= P.maxTickets) return;
+      const node = tpl.content.firstElementChild!.cloneNode(true) as HTMLElement;
+      node.querySelector('[data-ticket-title]')!.textContent = n === 0 ? 'Please answer some questions about your traffic ticket' : `Please answer some questions about your ${ord[n]} traffic ticket`;
+      const courts = node.querySelector('[data-courts]')!;
+      for (const c of P.courts) {
+        const price = n === 0 ? c.first : c.additional;
+        const l = document.createElement('label');
+        l.innerHTML = `<input type="radio" name="court_${n}" value="${c.id}" required> ${c.name} $${price}`;
+        courts.appendChild(l);
+      }
+      node.querySelector<HTMLInputElement>('[data-ticket-number]')!.name = `ticket_${n}`;
+      node.querySelector<HTMLInputElement>('[data-extra]')!.name = `extra_${n}`;
+      if (n === 0) node.querySelector('[data-remove-ticket]')!.closest('p')!.remove();
+      list.appendChild(node);
+      recalc();
+    };
+    const recalc = () => {
+      let total = 0; const tickets: any[] = [];
+      list.querySelectorAll<HTMLElement>('[data-ticket]').forEach((t, i) => {
+        const court = (t.querySelector<HTMLInputElement>('input[type=radio]:checked') || {}).value;
+        const c = P.courts.find((x: any) => x.id === court);
+        const extra = Math.min(P.maxExtra, Math.max(0, parseInt(t.querySelector<HTMLInputElement>('[data-extra]')!.value || '0', 10)));
+        const hint = t.querySelector<HTMLElement>('[data-extra-hint]')!;
+        if (c) {
+          const per = i === 0 ? c.extraFirst : c.extraAdditional;
+          hint.textContent = `Only $${per} extra per citation. Up to ${P.maxExtra} citations only.`;
+          total += (i === 0 ? c.first : c.additional) + extra * per;
+        }
+        tickets.push({ court, number: t.querySelector<HTMLInputElement>('[data-ticket-number]')!.value, extra });
+      });
+      const hw = form.querySelector<HTMLInputElement>('input[name=has_warrants]:checked');
+      const wq = form.querySelector<HTMLElement>('[data-warrants-q]')!;
+      wq.classList.toggle('ept-hidden', !(hw && hw.value === 'yes'));
+      if (hw && hw.value === 'yes') {
+        const w = Math.min(P.maxWarrants, Math.max(1, parseInt(form.querySelector<HTMLInputElement>('input[name=warrants]')!.value || '1', 10)));
+        total += P.warrantFirst + (w - 1) * P.warrantAdditional;
+      }
+      totalEl.textContent = `$${total}`;
+      json.value = JSON.stringify(tickets);
+    };
+    root.querySelector('[data-add-ticket]')!.addEventListener('click', addTicket);
+    list.addEventListener('click', (e) => { const b = (e.target as HTMLElement).closest('[data-remove-ticket]'); if (b) { b.closest('[data-ticket]')!.remove(); renumber(); } });
+    const renumber = () => { // rebuild from scratch keeping values
+      const vals = Array.from(list.querySelectorAll<HTMLElement>('[data-ticket]')).map((t) => ({ court: (t.querySelector<HTMLInputElement>('input[type=radio]:checked') || {}).value, num: t.querySelector<HTMLInputElement>('[data-ticket-number]')!.value, extra: t.querySelector<HTMLInputElement>('[data-extra]')!.value }));
+      list.innerHTML = '';
+      vals.forEach((v, i) => { addTicket(); const t = list.querySelectorAll<HTMLElement>('[data-ticket]')[i]; if (v.court) (t.querySelector<HTMLInputElement>(`input[value="${v.court}"]`) || {} as any).checked = true; t.querySelector<HTMLInputElement>('[data-ticket-number]')!.value = v.num; t.querySelector<HTMLInputElement>('[data-extra]')!.value = v.extra; });
+      recalc();
+    };
+    form.addEventListener('input', recalc);
+    form.addEventListener('change', recalc);
+    addTicket();
+  }
+</script>

@@ -1,0 +1,84 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../data/site';
+import '../styles/site.css';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  ogImage?: string;
+  jsonLd?: object[];
+  noindex?: boolean;
+  bodyClass?: string;
+  pageType?: 'WebPage' | 'Article' | 'FAQPage';
+  prefix?: string;
+}
+const { title, description, path, ogImage = SITE.ogImage, jsonLd = [], noindex = false, bodyClass = '', pageType = 'WebPage', prefix = 'single_page' } = Astro.props;
+const canonical = new URL(path, SITE.url).href;
+
+const org = {
+  '@context': 'https://schema.org',
+  '@type': ['LegalService', 'Attorney'],
+  '@id': `${SITE.url}/#organization`,
+  name: SITE.legalName,
+  url: SITE.url,
+  telephone: SITE.phoneE164,
+  image: new URL(SITE.ogImage, SITE.url).href,
+  logo: new URL(SITE.logo, SITE.url).href,
+  priceRange: '$',
+  description: 'Traffic ticket lawyer in El Paso, Texas. Attorney Robert Navar fights speeding tickets, warrants, CDL violations, no-insurance tickets and all Class C misdemeanors in El Paso Municipal Court, JP courts, Horizon City, Socorro, Anthony, Clint and San Elizario.',
+  address: { '@type': 'PostalAddress', streetAddress: SITE.address.street, addressLocality: SITE.address.city, addressRegion: SITE.address.state, postalCode: SITE.address.zip, addressCountry: 'US' },
+  geo: { '@type': 'GeoCoordinates', latitude: SITE.geo.lat, longitude: SITE.geo.lng },
+  areaServed: SITE.areaServed.map((n) => ({ '@type': 'City', name: n })),
+  sameAs: SITE.sameAs,
+  founder: { '@type': 'Person', name: SITE.attorney, jobTitle: 'Attorney' },
+  knowsLanguage: ['en', 'es'],
+};
+const website = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${SITE.url}/#website`, url: SITE.url, name: SITE.name, publisher: { '@id': `${SITE.url}/#organization` }, inLanguage: 'en-US' };
+const webpage = { '@context': 'https://schema.org', '@type': pageType, '@id': `${canonical}#webpage`, url: canonical, name: title, description, isPartOf: { '@id': `${SITE.url}/#website` }, about: { '@id': `${SITE.url}/#organization` }, inLanguage: 'en-US' };
+---
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(ogImage, SITE.url).href} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/images/image-5-150x150.png" sizes="32x32" />
+    <link rel="icon" href="/images/image-5-300x300.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/images/image-5-300x300.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="/css/site.css" />
+    <link rel="stylesheet" href="/css/inline.css" />
+    <link rel="stylesheet" href="/css/trustindex.css" />
+    <link rel="stylesheet" href="/css/call-now.css" />
+    <script type="application/ld+json" set:html={JSON.stringify([org, website, webpage, ...jsonLd])} />
+  </head>
+  <body class={bodyClass || "page-template page-template-elementor_header_footer page elementor-default elementor-template-full-width elementor-kit-5 elementor-page"} data-link="type-2" data-prefix={prefix} data-footer="type-1">
+    <a class="skip-link" href="#content">Skip to content</a>
+    <Header />
+    <div id="content">
+      <slot />
+    </div>
+    <Footer />
+    <a aria-label="Call Now Button" href={`tel:${SITE.phone}`} id="callnowbutton" class="call-now-button cnb-zoom-100 cnb-zindex-10 cnb-single cnb-mright cnb-displaymode cnb-displaymode-mobile-only cnb-phone-icon">Call Now</a>
+    <script src="../scripts/site.ts"></script>
+    <script async src="https://cdn.trustindex.io/loader.js"></script>
+    <div class="gtranslate_wrapper" id="gt-wrapper"></div>
+    <script is:inline>window.gtranslateSettings = {"default_language":"en","languages":["en","es"],"url_structure":"none","flag_style":"2d","flag_size":32,"wrapper_selector":"#gt-wrapper","alt_flags":{"en":"usa","es":"mexico"},"horizontal_position":"left","vertical_position":"bottom","flags_location":"/legacy/gtranslate/flags/"};</script>
+    <script is:inline data-gt-orig-domain="elpasotrafficticket.com" defer src="/legacy/gtranslate/js/fn.js"></script>
+  </body>
+</html>

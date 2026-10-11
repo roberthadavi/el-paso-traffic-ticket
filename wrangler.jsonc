@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "el-paso-traffic-ticket",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-08-01",
+  "assets": { "directory": "./dist", "binding": "ASSETS", "not_found_handling": "404-page", "html_handling": "auto-trailing-slash", "run_worker_first": true },
+  "observability": { "enabled": true },
+  "vars": { "LEAD_TO_EMAIL": "david@trafficfirm.org" }
+}

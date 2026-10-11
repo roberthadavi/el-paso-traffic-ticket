@@ -1,0 +1,54 @@
+---
+// "Warrant / Ticket Inquiry" — replaces the WP-FSQM form #7 (home, lookup-form pages, hire-us)
+interface Props { title?: string }
+const { title = 'Warrant / Ticket Inquiry' } = Astro.props;
+---
+<div class="ept-form ept-lookup">
+  <form class="ept-card" method="post" action="/api/lookup" novalidate data-ept-form>
+    <h3 class="ept-card-title">🔍 {title}</h3>
+    <div class="ept-card-body">
+      <input type="hidden" name="form" value="lookup" />
+      <input type="hidden" name="page" value={Astro.url.pathname} />
+      <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+      <div class="ept-q">
+        <label for="lk-name">Fill out this quick form so I can look you up and give you a free consultation <span class="ept-req">*</span></label>
+        <input id="lk-name" type="text" name="name" placeholder="First and Last name" required autocomplete="name" />
+      </div>
+      <div class="ept-row">
+        <div class="ept-q">
+          <label for="lk-dob">Date of Birth <span class="ept-req">*</span></label>
+          <p class="ept-hint">12/25/2000</p>
+          <input id="lk-dob" type="text" name="dob" placeholder="MM/DD/YYYY" inputmode="numeric" pattern="\d{1,2}/\d{1,2}/\d{4}" required autocomplete="bday" />
+        </div>
+        <div class="ept-q">
+          <label for="lk-phone">Phone <span class="ept-req">*</span></label>
+          <input id="lk-phone" type="tel" name="phone" placeholder="Phone" required autocomplete="tel" />
+        </div>
+      </div>
+      <div class="ept-row">
+        <div class="ept-q">
+          <label for="lk-email">Email Address</label>
+          <input id="lk-email" type="email" name="email" placeholder="Email Address" autocomplete="email" />
+        </div>
+        <div class="ept-q">
+          <label for="lk-cit">Citation Number(s)</label>
+          <p class="ept-hint">(Optional)</p>
+          <input id="lk-cit" type="text" name="citations" placeholder="Write Here" />
+        </div>
+      </div>
+      <div class="ept-q">
+        <label for="lk-dl">Driver's License <span class="ept-req">*</span></label>
+        <input id="lk-dl" type="text" name="dl" placeholder="DL#" required />
+      </div>
+      <fieldset class="ept-q">
+        <legend>How did you hear about us?</legend>
+        <div class="ept-radios">
+          {['Google', 'Mail', 'Social Media', 'Referral'].map((o) => <label><input type="radio" name="source" value={o} /> {o}</label>)}
+        </div>
+      </fieldset>
+      <p class="ept-fine">Your information is used only to look up your case. Submitting this form does not create an attorney–client relationship.</p>
+      <p class="ept-status" role="status" data-ok="Thank you — we received your information and will look you up and call you shortly." data-err="Something went wrong. Please call 915-503-1600 and we'll help you right away."></p>
+    </div>
+    <button class="ept-submit" type="submit" data-label="Submit" data-sending="Sending…">Submit</button>
+  </form>
+</div>

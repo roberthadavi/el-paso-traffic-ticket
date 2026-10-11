@@ -1,0 +1,10 @@
+---
+import Base from '../layouts/Base.astro';
+import LegacyContent from '../components/LegacyContent.astro';
+import html from '../legacy/pages/texas-points-system-explained.html?raw';
+const title = 'Texas Points System Explained - Elpaso Traffic Ticket';
+const description = 'The Driver Responsibility Program establishes a system that authorizes the Texas Department of Public Safety (DPS) to assess surcharges to an individual based on certain ...';
+---
+<Base prefix="single_blog_post" bodyClass="post-template-default single single-post single-format-standard jet-engine-optimized-dom elementor-default elementor-kit-5 ct-elementor-default-template" title={title} description={description} path="/texas-points-system-explained/" pageType="Article">
+  <LegacyContent html={html} />
+</Base>
