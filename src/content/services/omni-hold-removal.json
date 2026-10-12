@@ -42,7 +42,7 @@
       "heading": "From Lookup to Clearance: the Four Steps",
       "paragraphs": [
         "<p>Fill out the <a href=\"/traffic-tickets-and-warrants-lookup-form/\">free lookup form</a>, or call <a href=\"tel:915-503-1600\">915-503-1600</a>. Our office reports back every open case, its court, whether a <a href=\"/warrants/traffic-warrant-recall/\">warrant</a> is attached, and a flat quote. The search is free.</p>",
-        "<p>Once hired, we file a notice of appearance on each case and ask the court to recall any warrants; recall timing depends on each court's docket, and timing cannot be promised. Then we resolve the underlying tickets the way we resolve any citation — pursuing a <a href=\"/courts/ticket-dismissal/\">dismissal</a> or <a href=\"/courts/deferred-adjudication-defensive-driving/\">deferred disposition</a> under Code of Criminal Procedure art. 45.051 — rather than by pleading guilty and paying the fine. That matters, because a hold cleared by a guilty plea leaves a conviction on your record; a hold cleared by dismissal or completed deferral does not.</p>",
+        "<p>Once hired, we file a notice of appearance on each case and ask the court to recall any warrants; recall timing depends on each court's docket, and timing cannot be promised. Then we resolve the underlying tickets the way we resolve any citation — pursuing a <a href=\"/courts/ticket-dismissal/\">dismissal</a> or <a href=\"/courts/deferred-adjudication-defensive-driving/\">deferred disposition</a> under Code of Criminal Procedure art. 45A.302 (formerly art. 45.051) — rather than by pleading guilty and paying the fine. That matters, because a hold cleared by a guilty plea leaves a conviction on your record; a hold cleared by dismissal or completed deferral does not.</p>",
         "<p>When each case closes, we make sure the program fee is paid and ask the clerk to transmit the clearance to DPS. We then confirm the clearance posted before telling you to go renew.</p>"
       ],
       "list": [
@@ -93,7 +93,7 @@
     {
       "heading": "Before You Pay Anything Online, Send Us This",
       "paragraphs": [
-        "<p>Online portals make it easy to pay old tickets, and that is the problem. Every payment enters a plea and a conviction on your DPS record. Texas no longer uses the former Driver Responsibility Program points system, but repeated moving-violation convictions can still affect a driver's record and may lead to license suspension in some circumstances, and a conviction may affect insurance premiums depending on your history and carrier. Paying also may not clear a separate failure-to-appear case, leaving the hold in place after your money is gone.</p>",
+        "<p>Online portals make it easy to pay old tickets, and that is the problem. Every payment enters a plea and a conviction on your DPS record. Texas no longer uses the former Driver Responsibility Program points system, but DPS may suspend the license of a \"habitual violator\" — four or more moving-violation convictions arising from separate incidents within 12 consecutive months, or seven or more within 24 months (Transp. Code §521.292(b)), and a conviction may affect insurance premiums depending on your history and carrier. Paying also may not clear a separate failure-to-appear case, leaving the hold in place after your money is gone.</p>",
         "<p>Let us look first. The lookup is free and the quote is flat. To speed it up, send us:</p>"
       ],
       "list": [
@@ -123,7 +123,7 @@
     },
     {
       "q": "What is the OMNI fee?",
-      "a": "<p>Under Transportation Code Chapter 706, the court collects a program fee for each case it reported to the Failure to Appear program, in the amount the statute sets. The fee must be paid before the court will send the clearance to DPS, and it is charged per reported case.</p>"
+      "a": "<p>Under Transportation Code Chapter 706, the court collects a $10 reimbursement fee for each complaint or citation it reported to the Failure to Appear program (Transp. Code §706.006), due when judgment is entered, the case is dismissed, or bond is posted on the warrant. The fee must be paid before the court will send the clearance to DPS, and it is charged per reported case.</p>"
     },
     {
       "q": "Can I just pay the tickets to remove the hold?",

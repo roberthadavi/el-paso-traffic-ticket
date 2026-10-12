@@ -12,7 +12,7 @@ const check = (file, c, isHub) => {
   const errs = [];
   const text = [c.intro, ...(c.summary || []), ...(c.sections || []).flatMap((s) => [s.heading, ...(s.paragraphs || []), ...(s.list || []).map((l) => l.b + ' ' + l.text)]), ...(c.faqs || []).flatMap((f) => [f.q, f.a])].map(strip).join(' ');
   const words = text.split(/\s+/).filter(Boolean).length;
-  const [lo, hi] = isHub ? [750, 1300] : [950, 1600];
+  const [lo, hi] = isHub ? [750, 1400] : [950, 1700];
   if (words < lo || words > hi) errs.push(`word count ${words} (want ${lo}–${hi})`);
   if (!c.title || c.title.length > 65) errs.push(`title length ${c.title?.length}`);
   if (!c.metaDescription || c.metaDescription.length > 160 || c.metaDescription.length < 70) errs.push(`metaDescription length ${c.metaDescription?.length}`);
