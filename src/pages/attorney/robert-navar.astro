@@ -32,7 +32,8 @@ const crumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', it
           <dt>Law school</dt><dd>Juris Doctor, SMU Dedman School of Law (2004)</dd>
           <dt>Languages</dt><dd>English, Spanish</dd>
           <dt>Office</dt><dd>{SITE.address.street}, {SITE.address.city}, {SITE.address.state} {SITE.address.zip}</dd>
-          <dt>Phone / text</dt><dd><a href={`tel:${SITE.phone}`}>{SITE.phone}</a></dd>
+          <dt>Phone</dt><dd><a href={`tel:${SITE.phone}`}>{SITE.phone}</a></dd>
+          <dt>Text a ticket</dt><dd><a href={`sms:${SITE.textPhoneE164}`}>{SITE.textPhone}</a></dd>
           <dt>Email</dt><dd><a href={`mailto:${SITE.email}`}>{SITE.email}</a></dd>
         </dl></div>
       </div>
@@ -60,7 +61,7 @@ const crumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', it
     <p>Robert A. Navar is responsible for the content of this website. The legal information pages on this site carry a "Written and reviewed by" line with the date of the most recent review. This website is attorney advertising; it provides general information about Texas law and El Paso County courts and is not legal advice. Reading it, or contacting the office through a form, phone call or chat, does not by itself create an attorney-client relationship. See the <a href="/disclaimer/">full disclaimer</a>.</p>
 
     <h2>Contact</h2>
-    <p>Call or text <a href={`tel:${SITE.phone}`}>{SITE.phone}</a>, <a href="/schedule-an-appointment/">schedule an appointment</a>, or <a href="/contact-us/">send a message</a>. Para asistencia en español, llame al mismo número.</p>
+    <p>Call <a href={`tel:${SITE.phone}`}>{SITE.phone}</a>, text a photo of your ticket to <a href={`sms:${SITE.textPhoneE164}`}>{SITE.textPhone}</a>, <a href="/schedule-an-appointment/">schedule an appointment</a>, or <a href="/contact-us/">send a message</a>. Para asistencia en español, llame al mismo número.</p>
   </SimplePage>
   <RelatedServices slugs={['traffic-tickets', 'warrants', 'courts']} title="Where to start" />
 </Base>

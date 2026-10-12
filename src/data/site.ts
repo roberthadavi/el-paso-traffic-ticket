@@ -5,6 +5,8 @@ export const SITE = {
   url: 'https://elpasotrafficticket.com',
   phone: '915-503-1600',
   phoneE164: '+19155031600',
+  textPhone: '915-542-0388',        // SMS line — "text us a photo of your ticket"
+  textPhoneE164: '+19155420388',
   email: 'help@elpasotrafficticket.com',
   address: { street: '11860 Vista Del Sol Dr. #119', city: 'El Paso', state: 'TX', zip: '79936' },
   geo: { lat: 31.7454033, lng: -106.2880743 },
