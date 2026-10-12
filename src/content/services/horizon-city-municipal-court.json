@@ -14,9 +14,18 @@
   "published": "2026-10-06",
   "updated": "2026-10-11",
   "sources": [
-    { "name": "Town of Horizon City — Municipal Court", "url": "https://www.horizoncity.org/municipal-court/" },
-    { "name": "Town of Horizon City — Home", "url": "https://www.horizoncity.org/" },
-    { "name": "El Paso County — Justices of the Peace", "url": "https://www.epcounty.com/jp/" }
+    {
+      "name": "Town of Horizon City — Municipal Court",
+      "url": "https://www.horizoncity.org/municipal-court/"
+    },
+    {
+      "name": "Town of Horizon City — Home",
+      "url": "https://www.horizoncity.org/"
+    },
+    {
+      "name": "El Paso County — Justices of the Peace",
+      "url": "https://www.epcounty.com/jp/"
+    }
   ],
   "sections": [
     {
@@ -49,10 +58,22 @@
         "<p>Horizon City has school zones on its main corridors, and school-zone speeding is one of the citations we see from the city. Courts tend to look harder at those requests, so we come to the docket ready to argue for deferral, or for a reduction to a non-moving charge when the client's record makes deferral unlikely. Insurance, registration and license tickets are presented with proof the problem was fixed, and we ask for a dismissal on that basis.</p>"
       ],
       "list": [
-        { "b": "Dismissal:", "text": "the citation is dropped and nothing goes to DPS." },
-        { "b": "Deferred disposition:", "text": "a court-set period and fee, then dismissal with no conviction, if the judge grants it." },
-        { "b": "Driving safety course:", "text": "a state-approved course and a driving record close the case, when you qualify and the court allows it." },
-        { "b": "Non-moving reduction:", "text": "for school-zone, high-speed or CDL cases where deferral is not offered." }
+        {
+          "b": "Dismissal:",
+          "text": "the citation is dropped and nothing goes to DPS."
+        },
+        {
+          "b": "Deferred disposition:",
+          "text": "a court-set period and fee, then dismissal with no conviction, if the judge grants it."
+        },
+        {
+          "b": "Driving safety course:",
+          "text": "a state-approved course and a driving record close the case, when you qualify and the court allows it."
+        },
+        {
+          "b": "Non-moving reduction:",
+          "text": "for school-zone, high-speed or CDL cases where deferral is not offered."
+        }
       ],
       "image": {
         "label": "Eastlake Blvd near the Horizon City school zones with the speed limit sign in frame (local photo)",
@@ -67,7 +88,8 @@
       ],
       "image": {
         "label": "Paralegal at the intake desk opening a new Horizon City ticket file (staff photo)",
-        "alt": "Staff member at El Paso Traffic Ticket Firm opening a new Horizon City case"
+        "alt": "El Paso Traffic Ticket Firm staff at the Vista Del Sol office",
+        "src": "/images/staff/staff-two-lobby-standing.jpg"
       }
     },
     {
@@ -87,10 +109,22 @@
         "<p>Note the appearance date, do not pay the ticket and do not request defensive driving on your own; that request is a plea. Then <a href=\"/fight-my-ticket/\">hire us online</a> or call <a href=\"tel:915-503-1600\">915-503-1600</a> and send:</p>"
       ],
       "list": [
-        { "b": "The citation, both sides:", "text": "the agency line (Horizon City Police), citation number, charge and appearance date." },
-        { "b": "Your driver's license:", "text": "and a note if it is a CDL or out-of-state license." },
-        { "b": "Current insurance card and registration:", "text": "especially for a paperwork ticket, so we can ask for a compliance dismissal." },
-        { "b": "Any letter from the court:", "text": "a hearing notice, warrant notice or payment letter from 14999 Darrington." }
+        {
+          "b": "The citation, both sides:",
+          "text": "the agency line (Horizon City Police), citation number, charge and appearance date."
+        },
+        {
+          "b": "Your driver's license:",
+          "text": "and a note if it is a CDL or out-of-state license."
+        },
+        {
+          "b": "Current insurance card and registration:",
+          "text": "especially for a paperwork ticket, so we can ask for a compliance dismissal."
+        },
+        {
+          "b": "Any letter from the court:",
+          "text": "a hearing notice, warrant notice or payment letter from 14999 Darrington."
+        }
       ]
     }
   ],

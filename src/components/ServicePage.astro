@@ -49,7 +49,9 @@ const sideLinks = related.length ? related : siblings.slice(0, 4).map((s) => ({ 
           <h2>{s.heading}</h2>
           {s.paragraphs.map((p) => <Fragment set:html={p.startsWith('<') ? p : `<p>${p}</p>`} />)}
           {s.list && <ul class="r-svc-list">{s.list.map((l) => <li><b>{l.b}</b> <Fragment set:html={l.text} /></li>)}</ul>}
-          {s.image && <div class="r-svc-photo" style={`background-image:url('${img(i)}')`} role="img" aria-label={s.image.alt}><Placeholder label={s.image.label} /></div>}
+          {s.image && (s.image.src
+            ? <figure class="r-svc-photo is-real"><img src={s.image.src} alt={s.image.alt} loading="lazy" decoding="async" width="1800" height="1018" /></figure>
+            : <div class="r-svc-photo" role="img" aria-label={s.image.alt}><Placeholder label={s.image.label} /></div>)}
         </section>
       ))}
 

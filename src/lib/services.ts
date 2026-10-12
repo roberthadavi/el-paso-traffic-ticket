@@ -21,7 +21,7 @@
 // }
 import { SERVICES, HUBS, type ServiceMeta, type Hub } from '../data/services';
 
-export interface Section { heading: string; paragraphs: string[]; list?: { b: string; text: string }[]; image?: { label: string; alt: string } }
+export interface Section { heading: string; paragraphs: string[]; list?: { b: string; text: string }[]; image?: { label: string; alt: string; src?: string } }
 export interface ServiceContent {
   title: string; metaDescription: string; h1: string; intro: string; summary: string[];
   sections: Section[]; faqs: { q: string; a: string }[]; related: string[];
