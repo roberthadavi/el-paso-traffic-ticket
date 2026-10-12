@@ -1,14 +1,117 @@
 ---
 import Base from '../layouts/Base.astro';
-import LegacyContent from '../components/LegacyContent.astro';
-import RelatedServices from '../components/RelatedServices.astro';
-import html from '../legacy/pages/home.html?raw';
-const [top, bottom] = html.split('<!--CARDS:home-->');
+import LookupForm from '../components/LookupForm.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { SITE } from '../data/site';
+import { COURTS } from '../data/pricing';
+import reviews from '../legacy/trustindex-widget.html?raw';
 const title = 'Traffic Ticket Lawyer El Paso, TX | Robert Navar';
 const description = "El Paso traffic ticket attorney Robert Navar handles tickets and warrants in Municipal, JP, Horizon City and Socorro courts. Flat fees from $59; hire online.";
+const fee = (id: string) => `$${COURTS.find((c) => c.id === id)!.first}`;
 ---
-<Base prefix="single_page" bodyClass="home page-template-default page jet-engine-optimized-dom elementor-default elementor-kit-5 elementor-page ct-elementor-default-template" title={title} description={description} path="/">
-  <LegacyContent html={top} />
-  <RelatedServices slugs={['traffic-tickets', 'warrants', 'licenses', 'occupational-drivers-license', 'cdl-ticket', 'courts', 'record-clearing', 'wills-and-estate-planning', 'personal-injury']} title="What we handle for El Paso drivers and families" />
-  <LegacyContent html={bottom} />
+<Base prefix="single_page" bodyClass="home r-page" title={title} description={description} path="/">
+<main class="r-home" id="main">
+
+  <section class="r-wrap r-hero">
+    <div class="r-hero-text">
+      <span class="r-pill">El Paso County · Flat fees from {fee('el-paso-municipal')}</span>
+      <h1 class="r-h1">Traffic Ticket Lawyer <em>El Paso</em>, TX</h1>
+      <p class="r-lead">Don't just pay it — that is a conviction on your record. Attorney Robert A. Navar handles tickets and warrants in El Paso Municipal, JP, Horizon City and Socorro courts, and in many cases you never set foot in court.</p>
+      <div class="r-hero-btns">
+        <a class="r-btn r-btn-red" href="/fight-my-ticket/">Hire online in 2 minutes</a>
+        <a class="r-btn r-btn-outline" href="/traffic-tickets-and-warrants-lookup-form/">Check for tickets &amp; warrants</a>
+      </div>
+      <div class="r-hero-meta"><span>★★★★★ Google reviews</span><span>Licensed in Texas since 2005</span><span>English · Español</span></div>
+    </div>
+    <div class="r-hero-photo" role="img" aria-label="Attorney Robert A. Navar outside El Paso Municipal Court">
+      <Placeholder label="Attorney Robert A. Navar in front of El Paso Municipal Court, 810 E. Overland (staff photo)" />
+      <div class="r-fee-tag"><small>El Paso Municipal Court</small><b>{fee('el-paso-municipal')} <span>flat fee per ticket</span></b></div>
+    </div>
+  </section>
+
+  <section class="r-wrap"><div class="r-trust">
+    <div><strong>No court appearance</strong><span>in many traffic cases — the attorney appears for you</span></div>
+    <div><strong>Flat, posted fees</strong><span>{fee('el-paso-municipal')} Municipal · {fee('jp')} JP &amp; area courts</span></div>
+    <div><strong>Every El Paso County court</strong><span>Municipal, 8 JP precincts, Horizon City, Socorro, valley towns</span></div>
+    <div><strong>Warrants handled</strong><span>recall through the court, without an arrest</span></div>
+  </div></section>
+
+  <section class="r-wrap r-section">
+    <div class="r-section-head">
+      <div><span class="r-kicker">What we handle</span><h2 class="r-h2">For El Paso drivers and families</h2></div>
+      <a class="r-link" href="/traffic-tickets/">See all 30 services →</a>
+    </div>
+    <div class="r-cards">
+      <a class="r-card r-card-feature" href="/traffic-tickets/">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 17h14l-1.5-6h-11z"/><path d="M7 11l1.5-4h7l1.5 4"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg>
+        <strong>Traffic Ticket Defense</strong>
+        <span>Speeding, no insurance, no license, red light, school zone, texting, CDL and every other Class C citation — in every El Paso County court.</span>
+        <div class="r-chips"><i>Speeding</i><i>No insurance</i><i>CDL</i><i>School zone</i><i>+8 more</i></div>
+        <span class="r-more">Explore →</span>
+      </a>
+      <a class="r-card" href="/warrants/"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3 2 20h20z"/><path d="M12 9v5M12 17h.01"/></svg><strong>Traffic Warrants</strong><span>Warrant recall, failure to appear, OMNI holds</span></a>
+      <a class="r-card" href="/courts/"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 21h18M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></svg><strong>El Paso County Courts</strong><span>Which court has your ticket, and our fee there</span></a>
+      <a class="r-card" href="/drivers-license/"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="12" r="2"/><path d="M14 10h4M14 14h4"/></svg><strong>Driver's License Help</strong><span>Occupational licenses, DWLI, getting back on the road</span></a>
+      <a class="r-card" href="/criminal-expungement/"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 20h16M6 20l8-14 4 2-6 12"/></svg><strong>Criminal Record Clearing</strong><span>Expunction and orders of nondisclosure</span></a>
+    </div>
+    <div class="r-rows">
+      <a class="r-row" href="/traffic-tickets/cdl-ticket/"><div><strong>CDL &amp; Commercial Driver Tickets</strong><span>No masking — the strategy is different</span></div><em>→</em></a>
+      <a class="r-row" href="/wills-and-estate-planning/"><div><strong>Wills &amp; Estate Planning</strong><span>Wills, POA, directives, probate</span></div><em>→</em></a>
+      <a class="r-row" href="/personal-injury-lawyer-el-paso/"><div><strong>Personal Injury</strong><span>Car accident and injury claims</span></div><em>→</em></a>
+    </div>
+  </section>
+
+  <section class="r-dark r-section"><div class="r-wrap">
+    <span class="r-kicker">How it works</span>
+    <h2 class="r-h2">Send the ticket. We take it from there.</h2>
+    <div class="r-steps">
+      <div class="r-step"><b>1</b><strong>Photo of the citation</strong><span>Hire online or tap Text a Ticket and send a photo. We identify the court and the appearance date.</span></div>
+      <div class="r-step"><b>2</b><strong>We file the appearance</strong><span>The court communicates with our office, not you. Any warrant request goes in the same filing.</span></div>
+      <div class="r-step"><b>3</b><strong>Review and negotiate</strong><span>Citation, driving record, court — then dismissal, deferred disposition or a driving safety course, whichever is available.</span></div>
+      <div class="r-step"><b>4</b><strong>You get the result by text</strong><span>Plus what, if anything, you still need to do — in English or Spanish.</span></div>
+    </div>
+  </div></section>
+
+  <section class="r-wrap r-section r-split">
+    <div>
+      <span class="r-kicker">Courts</span>
+      <h2 class="r-h2">The agency on your citation decides the court</h2>
+      <p>El Paso Police tickets go to Municipal Court downtown. Sheriff, DPS trooper and constable tickets go to a Justice of the Peace precinct. City police in Horizon City, Socorro, San Elizario, Clint and Anthony file in their own municipal courts.</p>
+      <a class="r-link" href="/courts/">Find your court →</a>
+    </div>
+    <div class="r-courts">
+      <a class="r-court" href="/courts/el-paso-municipal-court/"><div><strong>El Paso Municipal Court</strong><span>810 E. Overland · EPPD tickets</span></div><em>{fee('el-paso-municipal')}</em></a>
+      <a class="r-court" href="/courts/el-paso-county-justice-of-the-peace/"><div><strong>Justice of the Peace (8 precincts)</strong><span>Sheriff · DPS · constable</span></div><em>{fee('jp')}</em></a>
+      <a class="r-court" href="/courts/horizon-city-municipal-court/"><div><strong>Horizon City Municipal</strong><span>14999 Darrington Rd</span></div><em>{fee('horizon-city')}</em></a>
+      <a class="r-court" href="/courts/socorro-municipal-court/"><div><strong>Socorro Municipal</strong><span>860 N. Rio Vista Rd</span></div><em>{fee('socorro')}</em></a>
+      <a class="r-court wide" href="/courts/san-elizario-clint-anthony-vinton-municipal-courts/"><div><strong>San Elizario · Clint · Anthony · Vinton</strong><span>Small courts, short office hours</span></div><em>{fee('san-elizario')}</em></a>
+    </div>
+  </section>
+
+  <section class="r-soft r-section"><div class="r-wrap r-lookup">
+    <div>
+      <span class="r-kicker">Free lookup</span>
+      <h2 class="r-h2">Not sure which court has your ticket — or whether you have a warrant?</h2>
+      <p>Send a few details and the office will look it up in the El Paso County courts and contact you, usually the same business day. No charge, no obligation.</p>
+      <p><a class="r-link" href="/warrants/">What happens after a missed court date →</a></p>
+    </div>
+    <LookupForm />
+  </div></section>
+
+  <section class="r-wrap r-section">
+    <div class="r-reviews-head"><h2 class="r-h2">What El Paso clients say</h2><span>Google reviews · shown live from the firm's profile</span></div>
+    <Fragment set:html={reviews} />
+  </section>
+
+  <section class="r-wrap r-section r-attorney">
+    <div class="r-attorney-photo" role="img" aria-label="Attorney Robert A. Navar"><Placeholder label="Portrait of Attorney Robert A. Navar (staff photo)" /></div>
+    <div>
+      <span class="r-kicker">The attorney</span>
+      <h2 class="r-h2">Robert A. Navar</h2>
+      <p>Texas attorney, licensed 2005, J.D. SMU Dedman School of Law. Traffic ticket and warrant defense is the core of the practice; he also assists El Paso clients with record clearing, occupational licenses, wills and injury claims. English and Spanish.</p>
+      <div class="r-hero-btns"><a class="r-btn r-btn-outline" href="/attorney/robert-navar/">About the attorney</a><a class="r-btn r-btn-red" href={`tel:${SITE.phone}`}>Call {SITE.phone}</a></div>
+    </div>
+  </section>
+
+</main>
 </Base>

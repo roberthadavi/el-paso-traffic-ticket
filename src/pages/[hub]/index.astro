@@ -15,8 +15,8 @@ const faq = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: 
 const crumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url + '/' }, { '@type': 'ListItem', position: 2, name: H.name, item: SITE.url + H.path }] };
 const list = { '@context': 'https://schema.org', '@type': 'ItemList', name: H.name, itemListElement: SERVICES.filter((s) => s.hub === id && s.slug).map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.name, url: SITE.url + s.path })) };
 ---
-<Base title={c.title} description={c.metaDescription} path={H.path} prefix="single_page" bodyClass="page-template-default page jet-engine-optimized-dom elementor-default elementor-kit-5 elementor-page ct-elementor-default-template" jsonLd={[faq, crumbs, list]} pageType="WebPage">
-  <main class="site-main hfeed" id="main" tabindex="-1"><div class="ct-container-full" data-content="normal"><article class="page type-page status-publish hentry"><div class="entry-content is-layout-constrained">
+<Base title={c.title} description={c.metaDescription} path={H.path} prefix="single_page" bodyClass="r-page" jsonLd={[faq, crumbs, list]} pageType="WebPage">
+  <main id="main">
     <ServicePage content={c} path={H.path} hub={id} isHub slug={`hub-${id}`} />
-  </div></article></div></main>
+  </main>
 </Base>

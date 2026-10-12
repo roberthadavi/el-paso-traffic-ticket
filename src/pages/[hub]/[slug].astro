@@ -17,8 +17,8 @@ const crumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', it
 const service: Record<string, unknown> = { '@context': 'https://schema.org', '@type': 'Service', '@id': `${SITE.url}${S.path}#service`, name: S.gbp, serviceType: S.name, url: SITE.url + S.path, description: c.metaDescription, provider: { '@id': `${SITE.url}/#organization` }, areaServed: SITE.areaServed.map((n) => ({ '@type': 'City', name: n })) };
 if (S.price) service.offers = { '@type': 'Offer', price: S.price.replace('$', ''), priceCurrency: 'USD', description: `Flat fee per ticket, ${S.name}` };
 ---
-<Base title={c.title} description={c.metaDescription} path={S.path} prefix="single_page" bodyClass="page-template-default page jet-engine-optimized-dom elementor-default elementor-kit-5 elementor-page ct-elementor-default-template" jsonLd={[faq, crumbs, service]} pageType="WebPage">
-  <main class="site-main hfeed" id="main" tabindex="-1"><div class="ct-container-full" data-content="normal"><article class="page type-page status-publish hentry"><div class="entry-content is-layout-constrained">
+<Base title={c.title} description={c.metaDescription} path={S.path} prefix="single_page" bodyClass="r-page" jsonLd={[faq, crumbs, service]} pageType="WebPage">
+  <main id="main">
     <ServicePage content={c} path={S.path} hub={S.hub} slug={slug} price={S.price} gbp={S.gbp} />
-  </div></article></div></main>
+  </main>
 </Base>

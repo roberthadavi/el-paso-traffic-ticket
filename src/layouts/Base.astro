@@ -4,6 +4,7 @@ import Chuy from '../components/Chuy.astro';
 import Footer from '../components/Footer.astro';
 import { SITE } from '../data/site';
 import '../styles/site.css';
+import '../styles/redesign.css';
 
 interface Props {
   title: string;
@@ -65,8 +66,7 @@ const webpage = { '@context': 'https://schema.org', '@type': pageType, '@id': `$
     <link rel="stylesheet" href="/css/site.css" />
     <link rel="stylesheet" href="/css/inline.css" />
     <link rel="stylesheet" href="/css/trustindex.css" />
-    <link rel="stylesheet" href="/css/call-now.css" />
-    <script type="application/ld+json" set:html={JSON.stringify([org, website, webpage, ...jsonLd])} />
+        <script type="application/ld+json" set:html={JSON.stringify([org, website, webpage, ...jsonLd])} />
   </head>
   <body class={bodyClass || "page-template page-template-elementor_header_footer page elementor-default elementor-template-full-width elementor-kit-5 elementor-page"} data-link="type-2" data-prefix={prefix} data-footer="type-1">
     <a class="skip-link" href="#content">Skip to content</a>
@@ -75,12 +75,11 @@ const webpage = { '@context': 'https://schema.org', '@type': pageType, '@id': `$
       <slot />
     </div>
     <Footer />
-    <a aria-label="Call Now Button" href={`tel:${SITE.phone}`} id="callnowbutton" class="call-now-button cnb-zoom-100 cnb-zindex-10 cnb-single cnb-mright cnb-displaymode cnb-displaymode-mobile-only cnb-phone-icon">Call Now</a>
     <Chuy />
     <script src="../scripts/site.ts"></script>
     <script async src="https://cdn.trustindex.io/loader.js"></script>
     <div class="gtranslate_wrapper" id="gt-wrapper"></div>
-    <script is:inline>window.gtranslateSettings = {"default_language":"en","languages":["en","es"],"url_structure":"none","flag_style":"2d","flag_size":32,"wrapper_selector":"#gt-wrapper","alt_flags":{"en":"usa","es":"mexico"},"horizontal_position":"left","vertical_position":"bottom","flags_location":"/legacy/gtranslate/flags/"};</script>
+    <script is:inline>window.gtranslateSettings = {"default_language":"en","languages":["en","es"],"url_structure":"none","flag_style":"2d","flag_size":32,"wrapper_selector":"#gt-wrapper","alt_flags":{"en":"usa","es":"mexico"},"horizontal_position":"left","vertical_position":"bottom","custom_css":"#gt-wrapper{display:none!important}","flags_location":"/legacy/gtranslate/flags/"};</script>
     <script is:inline data-gt-orig-domain="elpasotrafficticket.com" defer src="/legacy/gtranslate/js/fn.js"></script>
   </body>
 </html>

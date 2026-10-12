@@ -1,4 +1,33 @@
 ---
-import html from '../legacy/footer.html?raw';
+import { SITE } from '../data/site';
+import { SERVICES } from '../data/services';
+const s = (slug: string) => SERVICES.find((x) => x.slug === slug)!;
+const col1 = ['speeding-ticket', 'no-insurance-ticket', 'no-drivers-license-ticket', 'cdl-ticket', 'school-zone-speeding'];
+const col2 = ['traffic-warrant-recall', 'failure-to-appear', 'omni-hold-removal', 'el-paso-municipal-court', 'el-paso-county-justice-of-the-peace', 'ticket-dismissal'];
+const col3 = ['occupational-drivers-license', 'expunction', 'order-of-nondisclosure', 'wills'];
 ---
-<Fragment set:html={html} />
+<footer class="r-footer">
+  <div class="r-wrap">
+    <div class="r-footer-grid">
+      <div class="r-footer-brand">
+        <div class="r-footer-logo"><img src="/images/el-logo.png" alt="El Paso Traffic Ticket Firm" width="510" height="322" /></div>
+        <p>{SITE.address.street}<br />{SITE.address.city}, {SITE.address.state} {SITE.address.zip}</p>
+        <div class="r-footer-btns">
+          <a class="r-btn r-btn-ghost" href={`tel:${SITE.phone}`}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f44336" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>{SITE.phone}</a>
+          <a class="r-btn r-btn-red" href={`sms:${SITE.textPhoneE164}`} aria-label={`Text a photo of your ticket to ${SITE.textPhone}`}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Text a ticket</a>
+        </div>
+        <p class="r-footer-small">Attorney advertising. The information on this website is general information, not legal advice, and contacting the office does not create an attorney-client relationship.</p>
+      </div>
+      <div class="r-footer-col"><strong>Traffic Tickets</strong>{col1.map((x) => <a href={s(x).path}>{s(x).name.replace(' Defense', '').replace(' Tickets', '').replace(' Ticket (FMFR)', '')}</a>)}<a href="/traffic-tickets/">All 12 →</a></div>
+      <div class="r-footer-col"><strong>Warrants &amp; Courts</strong>{col2.map((x) => <a href={s(x).path}>{s(x).name.replace(' & Lift', '').replace(' Defense', '').replace(' Courts', '')}</a>)}<a href="/courts/">All courts →</a></div>
+      <div class="r-footer-col"><strong>Other Services</strong>{col3.map((x) => <a href={s(x).path}>{s(x).name.replace(' (ODL)', '').replace(' (Expunction)', '').replace(' (Record Sealing)', '').replace(' & Estate Planning', '')}</a>)}<a href="/personal-injury-lawyer-el-paso/">Personal injury</a></div>
+      <div class="r-footer-col"><strong>Firm</strong><a href="/attorney/robert-navar/">Attorney Robert A. Navar</a><a href="/faqs/">FAQ</a><a href="/blogs/">Blog</a><a href="/schedule-an-appointment/">Schedule an appointment</a><a href="/contact-us/">Contact</a><a href="/privacy-policy/">Privacy Policy</a><a href="/terms-of-use/">Terms of Use</a><a href="/disclaimer/">Legal Disclaimer</a></div>
+    </div>
+    <div class="r-footer-bottom"><span>© 2026 El Paso Traffic Ticket Firm · Attorney Robert A. Navar</span><span>Principal office in El Paso, Texas</span></div>
+  </div>
+</footer>
+<div class="r-stickybar" aria-label="Quick actions">
+  <a href={`tel:${SITE.phone}`}>Call</a>
+  <a href={`sms:${SITE.textPhoneE164}`}>Text ticket</a>
+  <a class="is-red" href="/fight-my-ticket/">Fight my ticket</a>
+</div>
