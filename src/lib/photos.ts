@@ -5,8 +5,11 @@ import META from '../data/photos.json';
 
 const PORTRAIT = new Set(['staff-lobby-sign-portrait.jpg', 'staff-one-lobby-standing.jpg', 'staff-three-entrance-portrait.jpg', 'the-mission-building-directory-vista-del-sol.jpg']);
 
+const STOCK_DIMS: Record<string, { width: number; height: number }> = { 'traffic-warrant-arrest-handcuffs-el-paso.jpg': { width: 1800, height: 1202 }, 'police-arrest-traffic-stop-warrant-el-paso.jpg': { width: 1800, height: 1200 } };
+
 export function photoDims(src: string): { width: number; height: number } {
   const name = src.split('/').pop() || '';
+  if (STOCK_DIMS[name]) return STOCK_DIMS[name];
   return PORTRAIT.has(name) ? { width: 1018, height: 1800 } : { width: 1800, height: 1018 };
 }
 
@@ -20,7 +23,8 @@ export const PLACE = {
 /** schema.org ImageObject for a site photo; `alt` is the page-specific caption, falls back to the file's description. */
 export function imageObject(src: string, alt?: string) {
   const name = src.split('/').pop() || '';
-  const m = (META as Record<string, { title: string; description: string }>)[name];
+  const m = (META as Record<string, { title: string; description: string; stock?: boolean }>)[name];
+  const stock = !!m?.stock;
   const { width, height } = photoDims(src);
   return {
     '@type': 'ImageObject',
@@ -32,13 +36,17 @@ export function imageObject(src: string, alt?: string) {
     description: m?.description || alt,
     width, height,
     encodingFormat: 'image/jpeg',
-    contentLocation: PLACE,
-    creditText: 'El Paso Traffic Ticket Firm',
-    creator: { '@type': 'Organization', name: SITE.legalName },
-    copyrightNotice: '© El Paso Traffic Ticket Firm',
-    copyrightHolder: { '@id': `${SITE.url}/#organization` },
-    license: `${SITE.url}/terms-of-use/`,
-    acquireLicensePage: `${SITE.url}/contact-us/`,
     representativeOfPage: false,
+    ...(stock
+      ? { creditText: 'Licensed stock photo' }
+      : {
+          contentLocation: PLACE,
+          creditText: 'El Paso Traffic Ticket Firm',
+          creator: { '@type': 'Organization', name: SITE.legalName },
+          copyrightNotice: '© El Paso Traffic Ticket Firm',
+          copyrightHolder: { '@id': `${SITE.url}/#organization` },
+          license: `${SITE.url}/terms-of-use/`,
+          acquireLicensePage: `${SITE.url}/contact-us/`,
+        }),
   };
 }

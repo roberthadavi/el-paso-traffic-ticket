@@ -17,7 +17,7 @@ for (const file of walk(dist)) {
   const seen = new Map();
   for (const m of html.matchAll(/<img\b[^>]*>/g)) {
     const tag = m[0];
-    const src = tag.match(/\bsrc="(\/images\/(?:staff|office)\/[^"]+)"/)?.[1];
+    const src = tag.match(/\bsrc="(\/images\/(?:staff|office|stock)\/[^"]+)"/)?.[1];
     if (!src || seen.has(src)) continue;
     const alt = tag.match(/\balt="([^"]*)"/)?.[1] || '';
     seen.set(src, alt);
@@ -33,9 +33,9 @@ ${urls.map((u) => `  <url>
 ${u.images.map(([src, alt]) => `    <image:image>
       <image:loc>${esc(SITE + src)}</image:loc>
       <image:caption>${esc(alt.replace(/&amp;/g, '&'))}</image:caption>
-      <image:geo_location>El Paso, Texas, United States</image:geo_location>
+${src.includes('/stock/') ? '' : `      <image:geo_location>El Paso, Texas, United States</image:geo_location>
       <image:license>${SITE}/terms-of-use/</image:license>
-    </image:image>`).join('\n')}
+`}    </image:image>`).join('\n')}
   </url>`).join('\n')}
 </urlset>
 `;
