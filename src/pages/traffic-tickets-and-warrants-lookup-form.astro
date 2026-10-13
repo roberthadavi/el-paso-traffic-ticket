@@ -1,12 +1,26 @@
 ---
 import Base from '../layouts/Base.astro';
-import LegacyContent from '../components/LegacyContent.astro';
+import LookupForm from '../components/LookupForm.astro';
 import RelatedServices from '../components/RelatedServices.astro';
-import html from '../legacy/pages/traffic-tickets-and-warrants-lookup-form.html?raw';
+import { SITE } from '../data/site';
 const title = 'Free El Paso Ticket & Warrant Lookup | Robert Navar';
 const description = "Not sure which El Paso court has your ticket, or whether you have a warrant? Send a few details and Robert Navar's office will look it up and contact you.";
 ---
-<Base prefix="single_page" bodyClass="page-template page-template-elementor_header_footer page jet-engine-optimized-dom elementor-default elementor-template-full-width elementor-kit-5 elementor-page" title={title} description={description} path="/traffic-tickets-and-warrants-lookup-form/">
-  <LegacyContent html={html} />
-  <RelatedServices slugs={['traffic-warrant-recall', 'omni-hold-removal', 'failure-to-appear']} />
+<Base prefix="single_page" bodyClass="r-page" title={title} description={description} path="/traffic-tickets-and-warrants-lookup-form/">
+  <main id="main" class="r-svc">
+    <section class="r-svc-hero r-checkout-hero r-lookup-hero">
+      <div class="r-wrap">
+        <div>
+          <ol class="r-crumbs" aria-label="Breadcrumb"><li><a href="/">Home</a></li><li><span aria-current="page">Ticket &amp; Warrant Lookup</span></li></ol>
+          <h1>Free El Paso Ticket &amp; Warrant Check</h1>
+          <p class="r-lead">Not sure which court has your ticket, or whether a missed date turned into a warrant? Send a few details and the office looks it up in the El Paso County courts and contacts you. No charge, no obligation.</p>
+          <span class="r-reviewed">Prefer to call? <a href={`tel:${SITE.phone}`} style="color:#fff">{SITE.phone}</a> · or text a photo of the ticket to <a href={`sms:${SITE.textPhoneE164}`} style="color:#fff">{SITE.textPhone}</a></span>
+        </div>
+      </div>
+    </section>
+    <div class="r-wrap r-checkout">
+      <LookupForm />
+    </div>
+  </main>
+  <RelatedServices slugs={['traffic-warrant-recall', 'omni-hold-removal', 'failure-to-appear']} title="If the lookup finds something" />
 </Base>

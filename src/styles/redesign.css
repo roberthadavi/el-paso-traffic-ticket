@@ -278,3 +278,5 @@ a.r-mega-colhead { color: var(--r-red); }
 .r-embed { background: #fff; border-radius: 20px; padding: 12px 12px 16px; box-shadow: 0 10px 30px rgba(0,0,0,.06); }
 .r-embed-warrant { min-height: 660px; }
 .r-embed .ept-form-note { padding: 0 8px; }
+.r-lookup-hero { padding: 36px 0 32px; }
+.r-checkout .r-embed { box-shadow: 0 14px 40px rgba(0,0,0,.08); }
