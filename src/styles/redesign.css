@@ -269,3 +269,9 @@ a.r-mega-colhead { color: var(--r-red); }
   .r-svc-body { grid-template-columns: 1fr; gap: 32px; padding: 32px var(--r-gutter) 24px; }
   .r-side { position: static; }
 }
+
+/* ---- checkout page (TTT embed) ---- */
+.r-checkout-hero .r-wrap { grid-template-columns: 1fr; }
+.r-checkout { padding: 32px var(--r-gutter) 48px; max-width: 980px; }
+.r-checkout-form { min-height: 900px; }
+.r-checkout .ept-form-note { max-width: 760px; margin-top: 16px; }
