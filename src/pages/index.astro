@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import LookupForm from '../components/LookupForm.astro';
 import Placeholder from '../components/Placeholder.astro';
+import OfficePhoto from '../components/OfficePhoto.astro';
 import { SITE } from '../data/site';
 import { COURTS } from '../data/pricing';
 import reviews from '../legacy/trustindex-widget.html?raw';
@@ -61,7 +62,9 @@ const fee = (id: string) => `$${COURTS.find((c) => c.id === id)!.first}`;
     </div>
   </section>
 
-  <section class="r-dark r-section"><div class="r-wrap">
+  <section class="r-dark r-section"><div class="r-wrap r-how">
+    <OfficePhoto variant="hero" class="r-how-photo" src="/images/office/el-paso-traffic-ticket-firm-staff-reviewing-case.jpg" alt="El Paso Traffic Ticket Firm staff reviewing a traffic warrant case at the Vista Del Sol office in El Paso, Texas" />
+    <div class="r-how-text">
     <span class="r-kicker">How it works</span>
     <h2 class="r-h2">Send the ticket. We take it from there.</h2>
     <div class="r-steps">
@@ -69,6 +72,7 @@ const fee = (id: string) => `$${COURTS.find((c) => c.id === id)!.first}`;
       <div class="r-step"><b>2</b><strong>We file the appearance</strong><span>The court communicates with our office, not you. Any warrant request goes in the same filing.</span></div>
       <div class="r-step"><b>3</b><strong>Review and negotiate</strong><span>Citation, driving record, court — then dismissal, deferred disposition or a driving safety course, whichever is available.</span></div>
       <div class="r-step"><b>4</b><strong>You get the result by text</strong><span>Plus what, if anything, you still need to do — in English or Spanish.</span></div>
+    </div>
     </div>
   </div></section>
 
@@ -90,6 +94,7 @@ const fee = (id: string) => `$${COURTS.find((c) => c.id === id)!.first}`;
 
   <section class="r-soft r-section"><div class="r-wrap r-lookup">
     <div>
+      <OfficePhoto class="r-lookup-photo" src="/images/office/el-paso-traffic-ticket-firm-free-consultation-sign.jpg" alt="El Paso Traffic Ticket Firm sign: Traffic tickets? Warrants? Free consultation, 915-503-1600 — Law Office of Robert Andrew Navar, El Paso, TX" />
       <span class="r-kicker">Free lookup</span>
       <h2 class="r-h2">Not sure which court has your ticket — or whether you have a warrant?</h2>
       <p>Send a few details and the office will look it up in the El Paso County courts and contact you, usually the same business day. No charge, no obligation.</p>

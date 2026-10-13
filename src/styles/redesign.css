@@ -280,3 +280,47 @@ a.r-mega-colhead { color: var(--r-red); }
 .r-embed .ept-form-note { padding: 0 8px; }
 .r-lookup-hero { padding: 36px 0 32px; }
 .r-checkout .r-embed { box-shadow: 0 14px 40px rgba(0,0,0,.08); }
+
+/* ---- Site photos (Oct 2026) ---- */
+.r-photo { margin: 0; }
+.r-photo img { display: block; width: 100%; height: auto; border-radius: 20px; }
+.r-photo figcaption { font-size: 13px; color: #666; margin-top: 8px; line-height: 1.5; }
+.r-photo-hero { position: relative; border-radius: 20px; overflow: hidden; min-height: 240px; height: 100%; }
+.r-photo-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 45%; border-radius: 0; }
+/* dark headers with a photo on the right (fight / lookup / schedule) */
+.r-checkout-hero .r-wrap:has(.r-hero-aside-photo) { grid-template-columns: 1.35fr 1fr; align-items: stretch; }
+.r-hero-aside-photo { min-height: 260px; box-shadow: 0 14px 40px rgba(0,0,0,.35); }
+/* homepage: how it works */
+.r-how { display: grid; grid-template-columns: 0.8fr 1.4fr; gap: 44px; align-items: stretch; }
+.r-how-photo { min-height: 320px; }
+.r-how .r-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 26px; }
+/* homepage: lookup section sign photo */
+.r-lookup-photo { max-width: 360px; }
+.r-lookup-photo img { border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+/* office location block */
+.r-office { display: grid; grid-template-columns: 1fr 1.15fr; gap: 44px; align-items: center; }
+.r-office-text { display: flex; flex-direction: column; gap: 14px; }
+.r-office-text p { margin: 0; color: #555; line-height: 1.65; }
+.r-office-facts { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin: 6px 0 4px; font-size: 15px; }
+.r-office-facts dt { font-weight: 700; color: var(--r-ink); }
+.r-office-facts dd { margin: 0; color: #444; }
+.r-office-photos { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; align-items: start; }
+.r-office-photos .is-portrait img { aspect-ratio: 3 / 4; object-fit: cover; }
+.r-office-photos .r-photo:first-child img { aspect-ratio: 16 / 10; object-fit: cover; }
+/* FAQ + schedule */
+.r-faq-photo { max-width: 900px; }
+.r-sched-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.r-sched-grid p a { color: var(--r-red); font-weight: 600; }
+@media (max-width: 960px) {
+  .r-checkout-hero .r-wrap:has(.r-hero-aside-photo) { grid-template-columns: 1fr; }
+  .r-hero-aside-photo { min-height: 200px; max-height: 260px; }
+  .r-how, .r-office, .r-sched-grid { grid-template-columns: 1fr; }
+  .r-how-photo { min-height: 240px; max-height: 300px; }
+  .r-office-photos { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .r-how .r-steps { grid-template-columns: 1fr; }
+  .r-office-photos { grid-template-columns: 1fr; }
+  .r-office-photos .is-portrait { display: none; }
+  .r-lookup-photo { max-width: 100%; }
+}

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/placeholders.mjs && astro build",
+    "build": "node scripts/placeholders.mjs && astro build && node scripts/image-sitemap.mjs",
     "preview": "astro preview",
     "deploy": "astro build && wrangler deploy"
   },

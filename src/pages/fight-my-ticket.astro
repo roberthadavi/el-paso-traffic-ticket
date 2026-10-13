@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { SITE } from '../data/site';
+import OfficePhoto from '../components/OfficePhoto.astro';
 const title = 'Hire a Traffic Ticket Lawyer Online | El Paso, TX';
 const description = "Hire attorney Robert Navar for your El Paso traffic ticket in about two minutes. Flat fee by court: $59 El Paso Municipal, $69 JP and area courts.";
 ---
@@ -14,6 +15,7 @@ const description = "Hire attorney Robert Navar for your El Paso traffic ticket 
           <p class="r-lead">Enter your citation and pay the flat attorney fee. Attorney Robert A. Navar files his appearance with the court, and the office confirms by text. Have the citation, your driver's license and your insurance card handy.</p>
           <span class="r-reviewed">Questions first? Call <a href={`tel:${SITE.phone}`} style="color:#fff">{SITE.phone}</a> or text a photo of the ticket to <a href={`sms:${SITE.textPhoneE164}`} style="color:#fff">{SITE.textPhone}</a>.</span>
         </div>
+        <OfficePhoto variant="hero" class="r-hero-aside-photo" src="/images/office/el-paso-traffic-ticket-firm-staff-reviewing-case.jpg" alt="El Paso Traffic Ticket Firm staff entering a client's citation at the Vista Del Sol office in El Paso, Texas" eager />
       </div>
     </section>
     <div class="r-wrap r-checkout">

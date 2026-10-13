@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import LegacyContent from '../components/LegacyContent.astro';
 import RelatedServices from '../components/RelatedServices.astro';
+import OfficePhoto from '../components/OfficePhoto.astro';
 import html from '../legacy/pages/faqs.html?raw';
 const title = 'Traffic Ticket FAQs | El Paso, TX | Robert Navar';
 const description = 'Answers to common questions about El Paso traffic tickets, warrants, OMNI holds, CDL citations, suspended licenses and what hiring Attorney Robert Navar costs.';
@@ -15,5 +16,8 @@ const faq = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: 
 ---
 <Base prefix="single_page" bodyClass="page-template page-template-elementor_header_footer page jet-engine-optimized-dom elementor-default elementor-template-full-width elementor-kit-5 elementor-page" title={title} description={description} path="/faqs/" pageType="WebPage" jsonLd={[faq]}>
   <LegacyContent html={html} />
+  <section class="r-wrap r-section r-faq-photo">
+    <OfficePhoto src="/images/office/el-paso-traffic-ticket-firm-staff-reviewing-case.jpg" alt="El Paso Traffic Ticket Firm staff answering a client's traffic ticket question at the Vista Del Sol office in El Paso, Texas" caption="Didn't find your question? Call 915-503-1600 or text a photo of the ticket to 915-542-0388 — the office answers in English or Spanish." />
+  </section>
   <RelatedServices slugs={['traffic-tickets', 'warrants', 'courts']} />
 </Base>

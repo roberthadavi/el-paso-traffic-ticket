@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import SimplePage from '../../components/SimplePage.astro';
 import Placeholder from '../../components/Placeholder.astro';
+import OfficeLocation from '../../components/OfficeLocation.astro';
 import RelatedServices from '../../components/RelatedServices.astro';
 import { SITE } from '../../data/site';
 const title = 'Attorney Robert A. Navar | El Paso, TX | Traffic Ticket & Warrant Defense';
@@ -63,5 +64,6 @@ const crumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', it
     <h2>Contact</h2>
     <p>Call <a href={`tel:${SITE.phone}`}>{SITE.phone}</a>, text a photo of your ticket to <a href={`sms:${SITE.textPhoneE164}`}>{SITE.textPhone}</a>, <a href="/schedule-an-appointment/">schedule an appointment</a>, or <a href="/contact-us/">send a message</a>. Para asistencia en español, llame al mismo número.</p>
   </SimplePage>
+  <OfficeLocation />
   <RelatedServices slugs={['traffic-tickets', 'warrants', 'courts']} title="Where to start" />
 </Base>

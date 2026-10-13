@@ -2,11 +2,13 @@
 import Base from '../layouts/Base.astro';
 import LegacyContent from '../components/LegacyContent.astro';
 import RelatedServices from '../components/RelatedServices.astro';
+import OfficeLocation from '../components/OfficeLocation.astro';
 import html from '../legacy/pages/contact-us.html?raw';
 const title = 'Contact El Paso Traffic Ticket Firm | Robert Navar';
 const description = "Reach attorney Robert Navar's El Paso office by phone, text or message about a ticket, warrant, license problem or other legal matter. English and Spanish.";
 ---
 <Base prefix="single_page" bodyClass="page-template page-template-elementor_header_footer page jet-engine-optimized-dom elementor-default elementor-template-full-width elementor-kit-5 elementor-page" title={title} description={description} path="/contact-us/">
   <LegacyContent html={html} />
+  <OfficeLocation />
   <RelatedServices slugs={['traffic-tickets', 'record-clearing', 'wills-and-estate-planning']} />
 </Base>

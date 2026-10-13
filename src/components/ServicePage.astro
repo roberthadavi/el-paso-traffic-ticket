@@ -6,6 +6,7 @@ import { HUBS, SERVICES, hubOf, type HubId } from '../data/services';
 import { resolve, type ServiceContent } from '../lib/services';
 import Placeholder from './Placeholder.astro';
 import ServiceCards from './ServiceCards.astro';
+import { imageObject, photoDims } from '../lib/photos';
 
 interface Props { content: ServiceContent; path: string; hub: HubId; isHub?: boolean; price?: string; slug: string; gbp?: string }
 const { content: c, path, hub, isHub = false, price, slug, gbp } = Astro.props;
@@ -18,9 +19,11 @@ const siblings = isHub ? SERVICES.filter((s) => s.hub === hub && s.slug) : [];
 const crumbs = [{ name: 'Home', href: '/' }, { name: H.name, href: H.path }, ...(isHub ? [] : [{ name: c.h1, href: path }])];
 const fmt = (d: string) => new Date(d + 'T12:00:00Z').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 const img = (i: number) => `/images/placeholders/${slug}-${i + 1}.svg`;
+const photos = c.sections.filter((s) => s.image?.src).map((s) => imageObject(s.image!.src!, s.image!.alt));
 const sideLinks = related.length ? related : siblings.slice(0, 4).map((s) => ({ name: s.name, href: s.path }));
 ---
 <div class="r-svc">
+  {photos.length > 0 && <script type="application/ld+json" set:html={JSON.stringify(photos)} />}
   <section class="r-svc-hero">
     <div class="r-wrap">
       <div>
@@ -50,7 +53,7 @@ const sideLinks = related.length ? related : siblings.slice(0, 4).map((s) => ({ 
           {s.paragraphs.map((p) => <Fragment set:html={p.startsWith('<') ? p : `<p>${p}</p>`} />)}
           {s.list && <ul class="r-svc-list">{s.list.map((l) => <li><b>{l.b}</b> <Fragment set:html={l.text} /></li>)}</ul>}
           {s.image && (s.image.src
-            ? <figure class="r-svc-photo is-real"><img src={s.image.src} alt={s.image.alt} loading="lazy" decoding="async" width="1800" height="1018" /></figure>
+            ? <figure class="r-svc-photo is-real"><img src={s.image.src} alt={s.image.alt} loading="lazy" decoding="async" {...photoDims(s.image.src)} /></figure>
             : <div class="r-svc-photo" role="img" aria-label={s.image.alt}><Placeholder label={s.image.label} /></div>)}
         </section>
       ))}

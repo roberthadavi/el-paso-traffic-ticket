@@ -1,0 +1,12 @@
+---
+// A single geo-located site photo with ImageObject schema. `variant`: 'card' (rounded, in flow) | 'hero' (fills a hero aside slot).
+import { imageObject, photoDims } from '../lib/photos';
+interface Props { src: string; alt: string; caption?: string; variant?: 'card' | 'hero'; eager?: boolean; class?: string }
+const { src, alt, caption, variant = 'card', eager = false, class: cls = '' } = Astro.props;
+const dims = photoDims(src);
+---
+<figure class={`r-photo r-photo-${variant} ${cls}`}>
+  <img src={src} alt={alt} {...dims} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+  {caption && <figcaption>{caption}</figcaption>}
+  <script type="application/ld+json" set:html={JSON.stringify(imageObject(src, alt))} />
+</figure>

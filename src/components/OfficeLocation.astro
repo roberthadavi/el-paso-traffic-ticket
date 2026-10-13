@@ -1,0 +1,24 @@
+---
+// "Find the office" block: the two directory photos + address, hours and directions. Used on Contact, Schedule and Attorney pages.
+import { SITE } from '../data/site';
+import OfficePhoto from './OfficePhoto.astro';
+const maps = 'https://www.google.com/maps/place/11860+Vista+Del+Sol+Dr+%23119,+El+Paso,+TX+79936';
+---
+<section class="r-wrap r-section r-office" aria-labelledby="r-office-h">
+  <div class="r-office-text">
+    <span class="r-kicker">Find the office</span>
+    <h2 class="r-h2" id="r-office-h">The Mission, Suite 119 — Vista Del Sol &amp; Zaragoza, East El Paso</h2>
+    <p>El Paso Traffic Ticket Firm is listed on the lobby directory at <strong>The Mission</strong>, {SITE.address.street}, {SITE.address.city}, {SITE.address.state} {SITE.address.zip}. Easy access from Loop 375 and I-10.</p>
+    <dl class="r-office-facts">
+      <dt>Address</dt><dd><a href={maps} target="_blank" rel="noopener">{SITE.address.street}, {SITE.address.city}, {SITE.address.state} {SITE.address.zip}</a></dd>
+      <dt>Hours</dt><dd>Monday – Friday · Se habla español · Call or text any time; the office replies during business hours</dd>
+      <dt>Call</dt><dd><a href={`tel:${SITE.phone}`}>{SITE.phone}</a></dd>
+      <dt>Text a ticket</dt><dd><a href={`sms:${SITE.textPhoneE164}`}>{SITE.textPhone}</a></dd>
+    </dl>
+    <div class="r-hero-btns"><a class="r-btn r-btn-red" href={maps} target="_blank" rel="noopener">Get directions</a><a class="r-btn r-btn-outline" href="/contact-us/">Send a message</a></div>
+  </div>
+  <div class="r-office-photos">
+    <OfficePhoto src="/images/office/lobby-directory-el-paso-traffic-ticket-firm.jpg" alt="El Paso Traffic Ticket Firm on the lobby directory at The Mission, 11860 Vista Del Sol Dr., El Paso, TX 79936" caption="Look for us on the lobby directory at The Mission." />
+    <OfficePhoto src="/images/office/the-mission-building-directory-vista-del-sol.jpg" alt="Tenant directory at The Mission office building, 11860 Vista Del Sol Dr., El Paso — El Paso Traffic Ticket Firm, Suite 119" caption="The Mission tenant directory, 11860 Vista Del Sol Dr." class="is-portrait" />
+  </div>
+</section>

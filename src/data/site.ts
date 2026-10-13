@@ -11,7 +11,7 @@ export const SITE = {
   address: { street: '11860 Vista Del Sol Dr. #119', city: 'El Paso', state: 'TX', zip: '79936' },
   geo: { lat: 31.7454033, lng: -106.2880743 },
   logo: '/images/Group-128-1.png',
-  ogImage: '/images/Third-Section-Second-Image.png',
+  ogImage: '/images/staff/staff-three-entrance.jpg',
   sameAs: [
     'https://www.facebook.com/trafficfirmelpaso/',
     'https://www.instagram.com/trafficticketlawyers/',

@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import LookupForm from '../components/LookupForm.astro';
 import RelatedServices from '../components/RelatedServices.astro';
 import { SITE } from '../data/site';
+import OfficePhoto from '../components/OfficePhoto.astro';
 const title = 'Free El Paso Ticket & Warrant Lookup | Robert Navar';
 const description = "Not sure which El Paso court has your ticket, or whether you have a warrant? Send a few details and Robert Navar's office will look it up and contact you.";
 ---
@@ -16,6 +17,7 @@ const description = "Not sure which El Paso court has your ticket, or whether yo
           <p class="r-lead">Not sure which court has your ticket, or whether a missed date turned into a warrant? Send a few details and the office looks it up in the El Paso County courts and contacts you. No charge, no obligation.</p>
           <span class="r-reviewed">Prefer to call? <a href={`tel:${SITE.phone}`} style="color:#fff">{SITE.phone}</a> · or text a photo of the ticket to <a href={`sms:${SITE.textPhoneE164}`} style="color:#fff">{SITE.textPhone}</a></span>
         </div>
+        <OfficePhoto variant="hero" class="r-hero-aside-photo" src="/images/office/el-paso-traffic-ticket-firm-free-consultation-sign.jpg" alt="El Paso Traffic Ticket Firm sign at the Vista Del Sol office: Traffic tickets? Warrants? Free consultation, 915-503-1600" eager />
       </div>
     </section>
     <div class="r-wrap r-checkout">
