@@ -275,3 +275,6 @@ a.r-mega-colhead { color: var(--r-red); }
 .r-checkout { padding: 32px var(--r-gutter) 48px; max-width: 980px; }
 .r-checkout-form { min-height: 900px; }
 .r-checkout .ept-form-note { max-width: 760px; margin-top: 16px; }
+.r-embed { background: #fff; border-radius: 20px; padding: 12px 12px 16px; box-shadow: 0 10px 30px rgba(0,0,0,.06); }
+.r-embed-warrant { min-height: 660px; }
+.r-embed .ept-form-note { padding: 0 8px; }
